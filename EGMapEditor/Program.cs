@@ -16,6 +16,7 @@ namespace EGMapEditor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            SFML.CSFML.Activate();
             Application.Run(MapEditor.Instance);
         }
     }
