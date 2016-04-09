@@ -1,26 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using SFML.Graphics;
 
 namespace EGMapEditor
 {
     public partial class MapEditor : Form
     {
-        static readonly MapEditor _instance = new MapEditor();
-        public static MapEditor Instance { get { return _instance; } }
+        private static MapEditor _instance;
 
-        readonly string mapFolderPath = "Maps";
+        public static MapEditor Instance => _instance ?? (_instance = new MapEditor());
+
+        private string TilesetPath() { return Application.StartupPath + "/Tileset/"; }
+        private Texture[] Tilesets;
 
         public MapEditor()
         {
             InitializeComponent();
-
+            LoadTilesets();
         }
 
         private void MapEditor_Load(object sender, EventArgs e)
@@ -33,6 +30,21 @@ namespace EGMapEditor
             this.Hide();
             StartForm startForm = new StartForm();
             startForm.ShowDialog();
+        }
+
+        private void LoadTilesets()
+        {
+            var i = 1;
+            var tPath = TilesetPath();
+
+            while (File.Exists(tPath + i + ".png"))
+                i++;
+
+            Tilesets = new Texture[i];
+            var maxGfx = (byte)i;
+
+            for (i = 1; i < maxGfx; i++)
+                Tilesets[i] = new Texture(tPath + i + ".png");
         }
     }
 }
