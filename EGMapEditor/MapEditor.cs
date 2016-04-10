@@ -1,22 +1,41 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using SFML.Graphics;
 
 namespace EGMapEditor
 {
     public partial class MapEditor : Form
     {
-        private static MapEditor _instance;
+        static private MapEditor _instance;
+        public static MapEditor Instance { get { return _instance; } }
 
-        public static MapEditor Instance => _instance ?? (_instance = new MapEditor());
+        private TilesetController tilesetController;
 
-        private string TilesetPath() { return Application.StartupPath + "/Tileset/"; }
-        private Texture[] Tilesets;
+        private string TilesetPath() { return "/Tileset/"; }
+        public List<Texture> Tilesets { get; set; }
+        public List<string> TilesetString { get; set; }
+        
+        public int CurrentTileset { get; set; }
 
         public MapEditor()
         {
             InitializeComponent();
+
+            _instance = this;
+
+            tilesetController = new TilesetController();
+            tilesetController.Name = "tilesetController";
+            tilesetController.Size = new System.Drawing.Size(380, 400);
+            tilesetController.Dock = DockStyle.Left;
+            tilesetController.Location = new System.Drawing.Point(30, 30);
+            Controls.Add(tilesetController);
+
+            Tilesets = new List<Texture>();
+            TilesetString = new List<string>();
+
+
             LoadTilesets();
         }
 
@@ -34,17 +53,51 @@ namespace EGMapEditor
 
         private void LoadTilesets()
         {
-            var i = 1;
             var tPath = TilesetPath();
+            if (Directory.Exists(Application.StartupPath +  tPath))
+            {
+                string[] tempArray = Directory.GetFiles(Application.StartupPath + tPath, "*.png");
+                foreach (string s in tempArray)
+                {
+                    string temp = Path.GetFileName(s);
+                    TilesetString.Add(temp);
+                    Tilesets.Add(new Texture(s));
+                }
+                if (Tilesets.Count > 0)
+                {
+                    CurrentTileset = 0;
+                    tilesetController.UpdateTilesetDisplay();
+                }
+            }
+            else
+                Directory.CreateDirectory("Tileset");
+        }
 
-            while (File.Exists(tPath + i + ".png"))
-                i++;
+        private void menuAddTileset_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Title = @"Selected texture to import";
+                dialog.Multiselect = true;
+                dialog.CheckFileExists = true;
+                dialog.CheckPathExists = true;
+                dialog.Filter = @"Image Files|*.png;";
 
-            Tilesets = new Texture[i];
-            var maxGfx = (byte)i;
+                var result = dialog.ShowDialog();
 
-            for (i = 1; i < maxGfx; i++)
-                Tilesets[i] = new Texture(tPath + i + ".png");
+                if (result == DialogResult.OK)
+                {
+                    for (int i = 0; i < dialog.FileNames.Length; i++)
+                    {
+                        Tilesets.Add(new Texture(dialog.FileNames[i]));
+                        TilesetString.Add(dialog.SafeFileNames[i]);
+                    }
+                    
+                    CurrentTileset++;
+                    tilesetController.UpdateTilesetDisplay();
+
+                }
+            }
         }
     }
 }

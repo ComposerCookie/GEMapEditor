@@ -36,6 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "TilesetViewer";
             this.Size = new System.Drawing.Size(312, 293);
+            this.Resize += new System.EventHandler(this.TilesetViewer_Resize);
             this.ResumeLayout(false);
 
         }

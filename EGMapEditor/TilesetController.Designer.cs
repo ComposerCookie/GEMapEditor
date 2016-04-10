@@ -28,73 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tilesetViewer1 = new EGMapEditor.TilesetViewer();
-            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.hScrTileset = new System.Windows.Forms.HScrollBar();
+            this.vScrTileset = new System.Windows.Forms.VScrollBar();
+            this.txtTileset = new System.Windows.Forms.TextBox();
+            this.btnTSInc = new System.Windows.Forms.Button();
+            this.btnTSDec = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // tilesetViewer1
+            // hScrTileset
             // 
-            this.tilesetViewer1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tilesetViewer1.Location = new System.Drawing.Point(0, 0);
-            this.tilesetViewer1.Name = "tilesetViewer1";
-            this.tilesetViewer1.Size = new System.Drawing.Size(359, 597);
-            this.tilesetViewer1.TabIndex = 0;
+            this.hScrTileset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.hScrTileset.Location = new System.Drawing.Point(0, 597);
+            this.hScrTileset.Name = "hScrTileset";
+            this.hScrTileset.Size = new System.Drawing.Size(359, 22);
+            this.hScrTileset.TabIndex = 1;
+            this.hScrTileset.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrTileset_Scroll);
             // 
-            // hScrollBar1
+            // vScrTileset
             // 
-            this.hScrollBar1.Location = new System.Drawing.Point(0, 597);
-            this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(359, 22);
-            this.hScrollBar1.TabIndex = 1;
+            this.vScrTileset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.vScrTileset.Location = new System.Drawing.Point(359, 0);
+            this.vScrTileset.Name = "vScrTileset";
+            this.vScrTileset.Size = new System.Drawing.Size(22, 597);
+            this.vScrTileset.TabIndex = 2;
+            this.vScrTileset.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrTileset_Scroll);
             // 
-            // vScrollBar1
+            // txtTileset
             // 
-            this.vScrollBar1.Location = new System.Drawing.Point(359, 0);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(22, 597);
-            this.vScrollBar1.TabIndex = 2;
+            this.txtTileset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTileset.Location = new System.Drawing.Point(128, 622);
+            this.txtTileset.Name = "txtTileset";
+            this.txtTileset.ReadOnly = true;
+            this.txtTileset.Size = new System.Drawing.Size(116, 20);
+            this.txtTileset.TabIndex = 3;
+            this.txtTileset.Text = "0/0";
+            this.txtTileset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox1
+            // btnTSInc
             // 
-            this.textBox1.Location = new System.Drawing.Point(142, 622);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(88, 20);
-            this.textBox1.TabIndex = 3;
+            this.btnTSInc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTSInc.Location = new System.Drawing.Point(250, 622);
+            this.btnTSInc.Name = "btnTSInc";
+            this.btnTSInc.Size = new System.Drawing.Size(22, 22);
+            this.btnTSInc.TabIndex = 4;
+            this.btnTSInc.Text = ">";
+            this.btnTSInc.UseVisualStyleBackColor = true;
+            this.btnTSInc.Click += new System.EventHandler(this.btnTSInc_Click);
             // 
-            // button1
+            // btnTSDec
             // 
-            this.button1.Location = new System.Drawing.Point(236, 623);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(19, 19);
-            this.button1.TabIndex = 4;
-            this.button1.Text = ">";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(117, 623);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(19, 19);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "<";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnTSDec.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTSDec.Location = new System.Drawing.Point(100, 622);
+            this.btnTSDec.Name = "btnTSDec";
+            this.btnTSDec.Size = new System.Drawing.Size(22, 22);
+            this.btnTSDec.TabIndex = 5;
+            this.btnTSDec.Text = "<";
+            this.btnTSDec.UseVisualStyleBackColor = true;
+            this.btnTSDec.Click += new System.EventHandler(this.btnTSDec_Click);
             // 
             // TilesetController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.vScrollBar1);
-            this.Controls.Add(this.hScrollBar1);
-            this.Controls.Add(this.tilesetViewer1);
+            this.Controls.Add(this.btnTSDec);
+            this.Controls.Add(this.btnTSInc);
+            this.Controls.Add(this.txtTileset);
+            this.Controls.Add(this.vScrTileset);
+            this.Controls.Add(this.hScrTileset);
             this.Name = "TilesetController";
             this.Size = new System.Drawing.Size(381, 658);
+            this.Resize += new System.EventHandler(this.TilesetController_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,11 +108,11 @@
 
         #endregion
 
-        private TilesetViewer tilesetViewer1;
-        private System.Windows.Forms.HScrollBar hScrollBar1;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        
+        private System.Windows.Forms.HScrollBar hScrTileset;
+        private System.Windows.Forms.VScrollBar vScrTileset;
+        private System.Windows.Forms.TextBox txtTileset;
+        private System.Windows.Forms.Button btnTSDec;
+        private System.Windows.Forms.Button btnTSInc;
     }
 }
