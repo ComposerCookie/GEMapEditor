@@ -38,16 +38,36 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Map.cs" />
+    <Compile Include="MapController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MapController.Designer.cs">
+      <DependentUpon>MapController.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapEditor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MapEditor.Designer.cs">
       <DependentUpon>MapEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapsContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MapsContainer.Designer.cs">
+      <DependentUpon>MapsContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MapViewer.Designer.cs">
+      <DependentUpon>MapViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectExplorer.cs">
       <SubType>UserControl</SubType>
@@ -75,8 +95,17 @@
     <Compile Include="TilesetViewer.Designer.cs">
       <DependentUpon>TilesetViewer.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="MapController.resx">
+      <DependentUpon>MapController.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MapEditor.resx">
       <DependentUpon>MapEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapsContainer.resx">
+      <DependentUpon>MapsContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapViewer.resx">
+      <DependentUpon>MapViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectExplorer.resx">
       <DependentUpon>ProjectExplorer.cs</DependentUpon>

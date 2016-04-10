@@ -59,5 +59,10 @@ namespace EGMapEditor
             tilesetViewer.Width = Size.Width - 22;
             tilesetViewer.Height = Size.Height - 61;
         }
+
+        private void chkGrid_CheckedChanged(object sender, System.EventArgs e)
+        {
+            tilesetViewer.DrawGrid = chkGrid.Checked;
+        }
     }
 }

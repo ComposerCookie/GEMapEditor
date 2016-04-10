@@ -32,7 +32,7 @@
             this.stuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddTileset = new System.Windows.Forms.ToolStripMenuItem();
-            this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAddMap = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +43,7 @@
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.explorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tilesetControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mapsContainer = new EGMapEditor.MapsContainer();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +77,7 @@
             // 
             this.addToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuAddTileset,
-            this.mapToolStripMenuItem});
+            this.menuAddMap});
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
             this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addToolStripMenuItem.Text = "Add";
@@ -88,11 +89,12 @@
             this.menuAddTileset.Text = "Tileset";
             this.menuAddTileset.Click += new System.EventHandler(this.menuAddTileset_Click);
             // 
-            // mapToolStripMenuItem
+            // menuAddMap
             // 
-            this.mapToolStripMenuItem.Name = "mapToolStripMenuItem";
-            this.mapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.mapToolStripMenuItem.Text = "Map";
+            this.menuAddMap.Name = "menuAddMap";
+            this.menuAddMap.Size = new System.Drawing.Size(152, 22);
+            this.menuAddMap.Text = "Map";
+            this.menuAddMap.Click += new System.EventHandler(this.menuAddMap_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -156,15 +158,23 @@
             this.tilesetControllerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.tilesetControllerToolStripMenuItem.Text = "Tileset Controller";
             // 
+            // mapsContainer
+            // 
+            this.mapsContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapsContainer.Location = new System.Drawing.Point(0, 24);
+            this.mapsContainer.Name = "mapsContainer";
+            this.mapsContainer.Size = new System.Drawing.Size(1159, 640);
+            this.mapsContainer.TabIndex = 1;
+            // 
             // MapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1159, 664);
+            this.Controls.Add(this.mapsContainer);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MapEditor";
-            this.ShowInTaskbar = false;
             this.Text = "MapEditor";
             this.Load += new System.EventHandler(this.MapEditor_Load);
             this.Shown += new System.EventHandler(this.MapEditor_Shown);
@@ -189,8 +199,9 @@
         private System.Windows.Forms.ToolStripMenuItem pushToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem mapToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuAddMap;
         private System.Windows.Forms.ToolStripMenuItem menuAddTileset;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private MapsContainer mapsContainer;
     }
 }

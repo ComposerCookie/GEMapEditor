@@ -6,10 +6,27 @@ using SFML.Graphics;
 
 namespace EGMapEditor
 {
+    public struct SelectedTileArea
+    {
+        int offsetX;
+        int offsetY;
+        int id;
+
+        public SelectedTileArea(int oX, int oY, int _id)
+        {
+            offsetX = oX;
+            offsetY = oY;
+            id = _id;
+        }
+    }
+
     public partial class MapEditor : Form
     {
         static private MapEditor _instance;
         public static MapEditor Instance { get { return _instance; } }
+
+        public int TILE_WIDTH { get { return 16; } }
+        public int TILE_HEIGHT { get { return 16; } }
 
         private TilesetController tilesetController;
 
@@ -18,6 +35,8 @@ namespace EGMapEditor
         public List<string> TilesetString { get; set; }
         
         public int CurrentTileset { get; set; }
+
+        public List<SelectedTileArea> SelectingArea { get; set; }
 
         public MapEditor()
         {
@@ -34,9 +53,10 @@ namespace EGMapEditor
 
             Tilesets = new List<Texture>();
             TilesetString = new List<string>();
-
+            SelectingArea = new List<SelectedTileArea>();
 
             LoadTilesets();
+
         }
 
         private void MapEditor_Load(object sender, EventArgs e)
@@ -98,6 +118,11 @@ namespace EGMapEditor
 
                 }
             }
+        }
+
+        private void menuAddMap_Click(object sender, EventArgs e)
+        {
+            mapsContainer.OpenMap(new Map());
         }
     }
 }

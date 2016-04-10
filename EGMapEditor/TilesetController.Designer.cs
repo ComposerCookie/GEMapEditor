@@ -33,6 +33,7 @@
             this.txtTileset = new System.Windows.Forms.TextBox();
             this.btnTSInc = new System.Windows.Forms.Button();
             this.btnTSDec = new System.Windows.Forms.Button();
+            this.chkGrid = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // hScrTileset
@@ -55,9 +56,8 @@
             // 
             // txtTileset
             // 
-            this.txtTileset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTileset.Location = new System.Drawing.Point(128, 622);
+            this.txtTileset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtTileset.Location = new System.Drawing.Point(29, 622);
             this.txtTileset.Name = "txtTileset";
             this.txtTileset.ReadOnly = true;
             this.txtTileset.Size = new System.Drawing.Size(116, 20);
@@ -67,9 +67,8 @@
             // 
             // btnTSInc
             // 
-            this.btnTSInc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTSInc.Location = new System.Drawing.Point(250, 622);
+            this.btnTSInc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTSInc.Location = new System.Drawing.Point(151, 622);
             this.btnTSInc.Name = "btnTSInc";
             this.btnTSInc.Size = new System.Drawing.Size(22, 22);
             this.btnTSInc.TabIndex = 4;
@@ -79,9 +78,8 @@
             // 
             // btnTSDec
             // 
-            this.btnTSDec.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTSDec.Location = new System.Drawing.Point(100, 622);
+            this.btnTSDec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTSDec.Location = new System.Drawing.Point(1, 622);
             this.btnTSDec.Name = "btnTSDec";
             this.btnTSDec.Size = new System.Drawing.Size(22, 22);
             this.btnTSDec.TabIndex = 5;
@@ -89,10 +87,23 @@
             this.btnTSDec.UseVisualStyleBackColor = true;
             this.btnTSDec.Click += new System.EventHandler(this.btnTSDec_Click);
             // 
+            // chkGrid
+            // 
+            this.chkGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkGrid.AutoSize = true;
+            this.chkGrid.Location = new System.Drawing.Point(299, 622);
+            this.chkGrid.Name = "chkGrid";
+            this.chkGrid.Size = new System.Drawing.Size(45, 17);
+            this.chkGrid.TabIndex = 6;
+            this.chkGrid.Text = "Grid";
+            this.chkGrid.UseVisualStyleBackColor = true;
+            this.chkGrid.CheckedChanged += new System.EventHandler(this.chkGrid_CheckedChanged);
+            // 
             // TilesetController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkGrid);
             this.Controls.Add(this.btnTSDec);
             this.Controls.Add(this.btnTSInc);
             this.Controls.Add(this.txtTileset);
@@ -114,5 +125,6 @@
         private System.Windows.Forms.TextBox txtTileset;
         private System.Windows.Forms.Button btnTSDec;
         private System.Windows.Forms.Button btnTSInc;
+        private System.Windows.Forms.CheckBox chkGrid;
     }
 }
