@@ -51,12 +51,14 @@ namespace EGMapEditor
                 {
                     for (int x = 0; x < map.Height; x++)
                     {
-                        if (map.tile[y * map.Width + x].tileset >= 0 && map.tile[y * map.Width + x].id >= 0)
+                        if (map.tiles[0][y * map.Width + x].tileset >= 0 && map.tiles[0][y * map.Width + x].id >= 0)
                         {
-                            tempSprite = new Sprite(MapEditor.Instance.Tilesets[map.tile[y * map.Width + x].tileset]);
+                            if (MapEditor.Instance.Tilesets.Count >= map.tiles[0][y * map.Width + x].tileset)
+                                continue;
+                            tempSprite = new Sprite(MapEditor.Instance.Tilesets[map.tiles[0][y * map.Width + x].tileset]);
                             tempSprite.Position = new SFML.System.Vector2f(x * MapEditor.Instance.TILE_WIDTH, y * MapEditor.Instance.TILE_HEIGHT);
-                            tempSprite.TextureRect = new IntRect(map.tile[y * map.Width + x].id % (int)(tempSprite.Texture.Size.X / MapEditor.Instance.TILE_WIDTH) * MapEditor.Instance.TILE_WIDTH, 
-                                map.tile[y * map.Width + x].id / (int)(tempSprite.Texture.Size.X / MapEditor.Instance.TILE_WIDTH) * MapEditor.Instance.TILE_HEIGHT, 
+                            tempSprite.TextureRect = new IntRect(map.tiles[0][y * map.Width + x].id % (int)(tempSprite.Texture.Size.X / MapEditor.Instance.TILE_WIDTH) * MapEditor.Instance.TILE_WIDTH, 
+                                map.tiles[0][y * map.Width + x].id / (int)(tempSprite.Texture.Size.X / MapEditor.Instance.TILE_WIDTH) * MapEditor.Instance.TILE_HEIGHT, 
                                 MapEditor.Instance.TILE_WIDTH, 
                                 MapEditor.Instance.TILE_HEIGHT);
                             screen.Draw(tempSprite);
@@ -90,11 +92,11 @@ namespace EGMapEditor
             {
                 int clickedY = (mouseY + offsetY) / tempy * map.Width;
                 int clickedX = (mouseX + offsetX) / tempx;
-                if (clickedY + clickedX + st.offsetY * map.Width + st.offsetX < map.tile.Length)
+                if (clickedY + clickedX + st.offsetY * map.Width + st.offsetX < map.tiles[0].Length)
                 {
-                    map.tile[clickedY + clickedX + st.offsetY * map.Width + st.offsetX].id = st.id;
-                    map.tile[clickedY + clickedX + st.offsetY * map.Width + st.offsetX].tilesetName = MapEditor.Instance.TilesetString[st.tileset];
-                    map.tile[clickedY + clickedX + st.offsetY * map.Width + st.offsetX].tileset = st.tileset;
+                    map.tiles[0][clickedY + clickedX + st.offsetY * map.Width + st.offsetX].id = st.id;
+                    map.tiles[0][clickedY + clickedX + st.offsetY * map.Width + st.offsetX].tilesetName = MapEditor.Instance.TilesetString[st.tileset];
+                    map.tiles[0][clickedY + clickedX + st.offsetY * map.Width + st.offsetX].tileset = st.tileset;
                 }
             }
         }

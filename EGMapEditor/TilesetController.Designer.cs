@@ -57,7 +57,7 @@
             // txtTileset
             // 
             this.txtTileset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtTileset.Location = new System.Drawing.Point(29, 622);
+            this.txtTileset.Location = new System.Drawing.Point(29, 618);
             this.txtTileset.Name = "txtTileset";
             this.txtTileset.ReadOnly = true;
             this.txtTileset.Size = new System.Drawing.Size(116, 20);
@@ -68,7 +68,7 @@
             // btnTSInc
             // 
             this.btnTSInc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnTSInc.Location = new System.Drawing.Point(151, 622);
+            this.btnTSInc.Location = new System.Drawing.Point(151, 618);
             this.btnTSInc.Name = "btnTSInc";
             this.btnTSInc.Size = new System.Drawing.Size(22, 22);
             this.btnTSInc.TabIndex = 4;
@@ -79,7 +79,7 @@
             // btnTSDec
             // 
             this.btnTSDec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnTSDec.Location = new System.Drawing.Point(1, 622);
+            this.btnTSDec.Location = new System.Drawing.Point(1, 618);
             this.btnTSDec.Name = "btnTSDec";
             this.btnTSDec.Size = new System.Drawing.Size(22, 22);
             this.btnTSDec.TabIndex = 5;
@@ -91,7 +91,7 @@
             // 
             this.chkGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkGrid.AutoSize = true;
-            this.chkGrid.Location = new System.Drawing.Point(299, 622);
+            this.chkGrid.Location = new System.Drawing.Point(299, 618);
             this.chkGrid.Name = "chkGrid";
             this.chkGrid.Size = new System.Drawing.Size(45, 17);
             this.chkGrid.TabIndex = 6;
@@ -103,14 +103,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(381, 643);
             this.Controls.Add(this.chkGrid);
             this.Controls.Add(this.btnTSDec);
             this.Controls.Add(this.btnTSInc);
             this.Controls.Add(this.txtTileset);
             this.Controls.Add(this.vScrTileset);
             this.Controls.Add(this.hScrTileset);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "TilesetController";
-            this.Size = new System.Drawing.Size(381, 658);
             this.Resize += new System.EventHandler(this.TilesetController_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
