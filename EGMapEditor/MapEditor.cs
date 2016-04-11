@@ -32,7 +32,6 @@ namespace EGMapEditor
         public int TILE_HEIGHT { get { return 16; } }
 
         private TilesetController tilesetController;
-        private MapsContainer mapsContainer;
 
         private string TilesetPath() { return "/Tileset/"; }
         public List<Texture> Tilesets { get; set; }
@@ -53,21 +52,15 @@ namespace EGMapEditor
             tilesetController = new TilesetController();
             tilesetController.Name = "tilesetController";
             tilesetController.Size = new System.Drawing.Size(380, 400);
-
-            mapsContainer = new EGMapEditor.MapsContainer();
-            mapsContainer.Name = "mapsContainer";
-            mapsContainer.Size = new System.Drawing.Size(1159, 640);
-            mapsContainer.TabIndex = 1;
+            tilesetController.Dock = DockStyle.Left;
+            tilesetController.Location = new System.Drawing.Point(30, 30);
+            Controls.Add(tilesetController);
 
             Tilesets = new List<Texture>();
             TilesetString = new List<string>();
             SelectingArea = new List<SelectedTileArea>();
 
             LoadTilesets();
-
-
-            tilesetController.Show(this.dockPanel, WeifenLuo.WinFormsUI.Docking.DockState.DockLeftAutoHide);
-            mapsContainer.Show(this.dockPanel, WeifenLuo.WinFormsUI.Docking.DockState.DockRight);
 
         }
 

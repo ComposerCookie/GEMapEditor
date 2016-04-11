@@ -84,9 +84,6 @@ namespace EGMapEditor
 
         public void changeTileset(int t)
         {
-            if (MapEditor.Instance.Tilesets.Count == 0)
-                return;
-
             tempSprite = new Sprite(MapEditor.Instance.Tilesets[t]);
             tempSprite.Position = new SFML.System.Vector2f(0, 0);
 

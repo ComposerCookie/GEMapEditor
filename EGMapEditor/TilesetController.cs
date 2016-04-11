@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace EGMapEditor
 {
-    public partial class TilesetController : WeifenLuo.WinFormsUI.Docking.DockContent
+    public partial class TilesetController : UserControl
     {
         private TilesetViewer tilesetViewer;
 
@@ -19,11 +19,6 @@ namespace EGMapEditor
 
         public void UpdateTilesetDisplay()
         {
-            if (MapEditor.Instance.Tilesets.Count == 0)
-                return;
-
-            if (MapEditor.Instance.CurrentTileset >= MapEditor.Instance.Tilesets.Count)
-                MapEditor.Instance.CurrentTileset = MapEditor.Instance.Tilesets.Count - 1;
             tilesetViewer.changeTileset(MapEditor.Instance.CurrentTileset);
             txtTileset.Text = (MapEditor.Instance.CurrentTileset + 1) + "/" + MapEditor.Instance.Tilesets.Count;
             hScrTileset.Maximum = (int)MapEditor.Instance.Tilesets[MapEditor.Instance.CurrentTileset].Size.X - tilesetViewer.Size.Width + 4;

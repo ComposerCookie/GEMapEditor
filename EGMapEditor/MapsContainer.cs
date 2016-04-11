@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace EGMapEditor
 {
-    public partial class MapsContainer : WeifenLuo.WinFormsUI.Docking.DockContent
+    public partial class MapsContainer : UserControl
     {
         public MapsContainer()
         {
