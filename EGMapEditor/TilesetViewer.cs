@@ -21,6 +21,8 @@ namespace EGMapEditor
 
         public bool DrawGrid { get; set; }
 
+        //Font DEBUGGINGFONT = new SFML.Graphics.Font("arial.ttf");
+
         private int GetMaxTilePerRow
         {
             get { return (int)tempSprite.Texture.Size.X / MapEditor.Instance.TILE_WIDTH; }
@@ -55,10 +57,24 @@ namespace EGMapEditor
             {
                 screen.Clear(SFML.Graphics.Color.Transparent);
 
-                screen.Draw(tempSprite);
+                if (tempSprite != null)
+                    screen.Draw(tempSprite);
+
                 if (DrawGrid)
                     foreach (Vertex[] v in lines)
                         screen.Draw(v, PrimitiveType.Lines);
+
+
+
+                /*for (int y = 0; y < tempSprite.Texture.Size.Y / 32; y++)
+                {
+                    for (int x = 0; x < tempSprite.Texture.Size.X / 32; x++)
+                    {
+                        screen.Draw(new Text("" + (y * GetMaxTilePerRow + x), DEBUGGINGFONT) { Position = new SFML.System.Vector2f(x * 32, y * 32), Color = SFML.Graphics.Color.White, CharacterSize = 10 });
+                    }
+                }*/
+
+
 
                 screen.Draw(grabRect);
 
@@ -110,7 +126,7 @@ namespace EGMapEditor
                 pressedDown = true;
                 downX = e.Location.X / tempx * tempx;
                 downY = e.Location.Y / tempy * tempy;
-                grabRect.Position = new SFML.System.Vector2f(downX + offsetX, downY + offsetY);
+                grabRect.Position = new SFML.System.Vector2f((e.Location.X + offsetX) / tempx * tempx, (e.Location.Y + offsetY) / tempy * tempy);
                 grabRect.Size = new SFML.System.Vector2f(tempx, tempy);
             }
         }
@@ -153,7 +169,8 @@ namespace EGMapEditor
                 {
                     for (int x = 0; x < grabRect.Size.X / MapEditor.Instance.TILE_WIDTH; x++)
                     {
-                        MapEditor.Instance.SelectingArea.Add(new SelectedTileArea(x, y, (int)(grabRect.Position.Y / tempy + y) * GetMaxTilePerRow + (int)(grabRect.Position.X / tempx + x)));
+                        MapEditor.Instance.SelectingArea.Add(new SelectedTileArea(x, y, (int)(grabRect.Position.Y / tempy + y) * GetMaxTilePerRow + (int)(grabRect.Position.X / tempx + x), MapEditor.Instance.CurrentTileset));
+                        //Console.Write((int)(grabRect.Position.Y / tempy + y) * GetMaxTilePerRow + (int)(grabRect.Position.X / tempx + x) + " ");
                     }
                 }
             }

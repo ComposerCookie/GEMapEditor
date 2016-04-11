@@ -31,6 +31,8 @@
             this.tabMapsController = new System.Windows.Forms.TabControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkGrid = new System.Windows.Forms.CheckBox();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMapsController
@@ -46,6 +48,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.AutoSize = true;
             this.groupBox1.Location = new System.Drawing.Point(3, 493);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(530, 108);
@@ -57,12 +60,25 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.AutoSize = true;
+            this.groupBox2.Controls.Add(this.chkGrid);
             this.groupBox2.Location = new System.Drawing.Point(539, 493);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(226, 108);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options:";
+            // 
+            // chkGrid
+            // 
+            this.chkGrid.AutoSize = true;
+            this.chkGrid.Location = new System.Drawing.Point(6, 19);
+            this.chkGrid.Name = "chkGrid";
+            this.chkGrid.Size = new System.Drawing.Size(80, 17);
+            this.chkGrid.TabIndex = 0;
+            this.chkGrid.Text = "checkBox1";
+            this.chkGrid.UseVisualStyleBackColor = true;
+            this.chkGrid.CheckedChanged += new System.EventHandler(this.chkGrid_CheckedChanged);
             // 
             // MapsContainer
             // 
@@ -74,7 +90,10 @@
             this.Name = "MapsContainer";
             this.Size = new System.Drawing.Size(769, 604);
             this.Resize += new System.EventHandler(this.MapsContainer_Resize);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -83,5 +102,6 @@
         private System.Windows.Forms.TabControl tabMapsController;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox chkGrid;
     }
 }

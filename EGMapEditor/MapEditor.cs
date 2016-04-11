@@ -2,21 +2,24 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Threading;
 using SFML.Graphics;
 
 namespace EGMapEditor
 {
     public struct SelectedTileArea
     {
-        int offsetX;
-        int offsetY;
-        int id;
+        public int offsetX;
+        public int offsetY;
+        public int id;
+        public int tileset;
 
-        public SelectedTileArea(int oX, int oY, int _id)
+        public SelectedTileArea(int oX, int oY, int _id, int ts)
         {
             offsetX = oX;
             offsetY = oY;
             id = _id;
+            tileset = ts;
         }
     }
 
@@ -33,10 +36,12 @@ namespace EGMapEditor
         private string TilesetPath() { return "/Tileset/"; }
         public List<Texture> Tilesets { get; set; }
         public List<string> TilesetString { get; set; }
-        
+
         public int CurrentTileset { get; set; }
 
         public List<SelectedTileArea> SelectingArea { get; set; }
+
+        public bool DrawGridOnMaps { get; set; }
 
         public MapEditor()
         {
@@ -123,6 +128,11 @@ namespace EGMapEditor
         private void menuAddMap_Click(object sender, EventArgs e)
         {
             mapsContainer.OpenMap(new Map());
+        }
+
+        private void MapEditor_Resize(object sender, EventArgs e)
+        {
+            Thread.Sleep(10);
         }
     }
 }

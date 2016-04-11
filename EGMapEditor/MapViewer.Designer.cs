@@ -36,6 +36,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "MapViewer";
             this.Size = new System.Drawing.Size(261, 250);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapViewer_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapViewer_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MapViewer_MouseUp);
             this.Resize += new System.EventHandler(this.MapViewer_Resize);
             this.ResumeLayout(false);
 

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace EGMapEditor
 {
@@ -20,8 +21,8 @@ namespace EGMapEditor
         {
             tilesetViewer.changeTileset(MapEditor.Instance.CurrentTileset);
             txtTileset.Text = (MapEditor.Instance.CurrentTileset + 1) + "/" + MapEditor.Instance.Tilesets.Count;
-            hScrTileset.Maximum = (int)MapEditor.Instance.Tilesets[MapEditor.Instance.CurrentTileset].Size.X;
-            vScrTileset.Maximum = (int)MapEditor.Instance.Tilesets[MapEditor.Instance.CurrentTileset].Size.Y;
+            hScrTileset.Maximum = (int)MapEditor.Instance.Tilesets[MapEditor.Instance.CurrentTileset].Size.X - tilesetViewer.Size.Width + 4;
+            vScrTileset.Maximum = (int)MapEditor.Instance.Tilesets[MapEditor.Instance.CurrentTileset].Size.Y - tilesetViewer.Size.Height + 4;
             hScrTileset.Value = 0;
             vScrTileset.Value = 0;
         }
@@ -29,11 +30,13 @@ namespace EGMapEditor
         private void vScrTileset_Scroll(object sender, ScrollEventArgs e)
         {
             tilesetViewer.moveCamera(hScrTileset.Value, vScrTileset.Value);
+            //Console.Write(vScrTileset.Value + " ");
         }
 
         private void hScrTileset_Scroll(object sender, ScrollEventArgs e)
         {
             tilesetViewer.moveCamera(hScrTileset.Value, vScrTileset.Value);
+            //Console.Write(hScrTileset.Value + " ");
         }
 
         private void btnTSInc_Click(object sender, System.EventArgs e)
