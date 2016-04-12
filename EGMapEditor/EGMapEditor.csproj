@@ -57,6 +57,12 @@
     <Compile Include="MapEditor.Designer.cs">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="MapLayersViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MapLayersViewer.Designer.cs">
+      <DependentUpon>MapLayersViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapsContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -74,6 +80,12 @@
     </Compile>
     <Compile Include="ProjectExplorer.Designer.cs">
       <DependentUpon>ProjectExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropertiesViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PropertiesViewer.Designer.cs">
+      <DependentUpon>PropertiesViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
@@ -101,6 +113,9 @@
     <EmbeddedResource Include="MapEditor.resx">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MapLayersViewer.resx">
+      <DependentUpon>MapLayersViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MapsContainer.resx">
       <DependentUpon>MapsContainer.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectExplorer.resx">
       <DependentUpon>ProjectExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertiesViewer.resx">
+      <DependentUpon>PropertiesViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
