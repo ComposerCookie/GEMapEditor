@@ -48,10 +48,10 @@ namespace EGMapEditor
             grabRect.OutlineColor = SFML.Graphics.Color.Red;
             grabRect.OutlineThickness = 2;
 
-            Application.Idle += Render;
+            Application.Idle += render;
         }
 
-        private void Render(object sender, EventArgs e)
+        private void render(object sender, EventArgs e)
         {
             if (screen != null)
             {
@@ -106,7 +106,7 @@ namespace EGMapEditor
             offsetY = offY;
             view.Center = new SFML.System.Vector2f(offX + Size.Width / 2, offY + Size.Height / 2);
             screen.SetView(view);
-            Render(null, null);
+            render(null, null);
         }
 
         private void TilesetViewer_Resize(object sender, EventArgs e)
@@ -141,7 +141,7 @@ namespace EGMapEditor
                 int extraOffsetY = (e.Location.Y - downY) < 0 ? -tempy : tempy;
                 grabRect.Size = new SFML.System.Vector2f((e.Location.X - downX) / tempx * tempx + extraOffsetX, (e.Location.Y - downY) /tempy * tempy + extraOffsetY);
 
-                Render(null, null);
+                render(null, null);
             }
         }
 
@@ -182,6 +182,12 @@ namespace EGMapEditor
             {
 
             }
+            
+        }
+
+        private void TilesetViewer_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

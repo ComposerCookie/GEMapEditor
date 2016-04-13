@@ -29,7 +29,7 @@ namespace EGMapEditor
         private void MapsContainer_Resize(object sender, EventArgs e)
         {
             Thread.Sleep(10);
-            tabMapsController.Height = Size.Height - 117;
+            tabMapsController.Height = Size.Height - 26;
         }
 
         private void chkGrid_CheckedChanged(object sender, EventArgs e)

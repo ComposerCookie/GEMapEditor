@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace EGMapEditor
 {
-    public partial class PropertiesViewer : UserControl
+    public partial class MapPropertiesViewer : UserControl
     {
-        public PropertiesViewer()
+        public MapPropertiesViewer()
         {
             InitializeComponent();
             

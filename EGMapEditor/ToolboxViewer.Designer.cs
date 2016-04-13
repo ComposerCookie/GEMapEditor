@@ -1,6 +1,6 @@
 ﻿namespace EGMapEditor
 {
-    partial class TilesetViewer
+    partial class ToolboxViewer
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,22 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // TilesetViewer
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "TilesetViewer";
-            this.Size = new System.Drawing.Size(312, 293);
-            this.Load += new System.EventHandler(this.TilesetViewer_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TilesetViewer_MouseDown);
-            this.MouseLeave += new System.EventHandler(this.TilesetViewer_MouseLeave);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TilesetViewer_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TilesetViewer_MouseUp);
-            this.Resize += new System.EventHandler(this.TilesetViewer_Resize);
-            this.ResumeLayout(false);
-
         }
 
         #endregion

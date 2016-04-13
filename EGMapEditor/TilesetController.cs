@@ -67,5 +67,10 @@ namespace EGMapEditor
         {
             tilesetViewer.DrawGrid = chkGrid.Checked;
         }
+
+        private void TilesetController_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

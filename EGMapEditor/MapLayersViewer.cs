@@ -12,6 +12,8 @@ namespace EGMapEditor
 {
     public partial class MapLayersViewer : UserControl
     {
+        private Map viewingMap { get; set; }
+
         public MapLayersViewer()
         {
             InitializeComponent();
@@ -37,11 +39,19 @@ namespace EGMapEditor
             {
                 trvLayers.Nodes.Add(s);
             }
+
+            viewingMap = m;
         }
 
         public int GetSelectedLayerIndex()
         {
             return trvLayers.SelectedNode.Index;
+        }
+
+        private void btnAddLayer_Click(object sender, EventArgs e)
+        {
+            viewingMap.AddLayer();
+            trvLayers.Nodes.Add(viewingMap.layerNames[viewingMap.layerNames.Count]);
         }
     }
 }

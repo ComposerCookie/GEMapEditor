@@ -44,5 +44,10 @@ namespace EGMapEditor
         {
             mapViewer.moveCamera(hScrTileset.Value, vScrTileset.Value);
         }
+
+        private void MapController_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

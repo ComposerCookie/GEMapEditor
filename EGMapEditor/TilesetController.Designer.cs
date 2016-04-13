@@ -111,6 +111,7 @@
             this.Controls.Add(this.hScrTileset);
             this.Name = "TilesetController";
             this.Size = new System.Drawing.Size(381, 658);
+            this.Load += new System.EventHandler(this.TilesetController_Load);
             this.Resize += new System.EventHandler(this.TilesetController_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();

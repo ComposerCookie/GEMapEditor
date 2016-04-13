@@ -43,6 +43,7 @@
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.explorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tilesetControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlDocker = new EGMapEditor.ControlDocker();
             this.mapsContainer = new EGMapEditor.MapsContainer();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -158,13 +159,19 @@
             this.tilesetControllerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.tilesetControllerToolStripMenuItem.Text = "Tileset Controller";
             // 
+            // controlDocker
+            // 
+            this.controlDocker.Location = new System.Drawing.Point(880, 24);
+            this.controlDocker.Name = "controlDocker";
+            this.controlDocker.Size = new System.Drawing.Size(279, 640);
+            this.controlDocker.TabIndex = 2;
+            // 
             // mapsContainer
             // 
-            this.mapsContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mapsContainer.Location = new System.Drawing.Point(0, 24);
             this.mapsContainer.Name = "mapsContainer";
-            this.mapsContainer.Size = new System.Drawing.Size(1159, 640);
-            this.mapsContainer.TabIndex = 1;
+            this.mapsContainer.Size = new System.Drawing.Size(874, 628);
+            this.mapsContainer.TabIndex = 3;
             // 
             // MapEditor
             // 
@@ -172,6 +179,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1159, 664);
             this.Controls.Add(this.mapsContainer);
+            this.Controls.Add(this.controlDocker);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
@@ -205,6 +213,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuAddMap;
         private System.Windows.Forms.ToolStripMenuItem menuAddTileset;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private ControlDocker controlDocker;
         private MapsContainer mapsContainer;
     }
 }

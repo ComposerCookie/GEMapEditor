@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlDocker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlDocker.Designer.cs">
+      <DependentUpon>ControlDocker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Map.cs" />
     <Compile Include="MapController.cs">
       <SubType>UserControl</SubType>
@@ -81,11 +87,11 @@
     <Compile Include="ProjectExplorer.Designer.cs">
       <DependentUpon>ProjectExplorer.cs</DependentUpon>
     </Compile>
-    <Compile Include="PropertiesViewer.cs">
+    <Compile Include="MapPropertiesViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PropertiesViewer.Designer.cs">
-      <DependentUpon>PropertiesViewer.cs</DependentUpon>
+    <Compile Include="MapPropertiesViewer.Designer.cs">
+      <DependentUpon>MapPropertiesViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
@@ -107,6 +113,21 @@
     <Compile Include="TilesetViewer.Designer.cs">
       <DependentUpon>TilesetViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolboxViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolboxViewer.Designer.cs">
+      <DependentUpon>ToolboxViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolPropertiesViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolPropertiesViewer.Designer.cs">
+      <DependentUpon>ToolPropertiesViewer.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ControlDocker.resx">
+      <DependentUpon>ControlDocker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MapController.resx">
       <DependentUpon>MapController.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,8 +146,8 @@
     <EmbeddedResource Include="ProjectExplorer.resx">
       <DependentUpon>ProjectExplorer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PropertiesViewer.resx">
-      <DependentUpon>PropertiesViewer.cs</DependentUpon>
+    <EmbeddedResource Include="MapPropertiesViewer.resx">
+      <DependentUpon>MapPropertiesViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
@@ -140,9 +161,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TilesetController.resx">
-      <DependentUpon>TilesetController.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="TilesetViewer.resx">
       <DependentUpon>TilesetViewer.cs</DependentUpon>
     </EmbeddedResource>

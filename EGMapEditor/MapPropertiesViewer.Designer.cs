@@ -1,6 +1,6 @@
 ﻿namespace EGMapEditor
 {
-    partial class PropertiesViewer
+    partial class MapPropertiesViewer
     {
         /// <summary> 
         /// Required designer variable.

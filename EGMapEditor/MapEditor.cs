@@ -52,9 +52,10 @@ namespace EGMapEditor
             tilesetController = new TilesetController();
             tilesetController.Name = "tilesetController";
             tilesetController.Size = new System.Drawing.Size(380, 400);
-            tilesetController.Dock = DockStyle.Left;
-            tilesetController.Location = new System.Drawing.Point(30, 30);
-            Controls.Add(tilesetController);
+            //tilesetController.Dock = DockStyle.Left;
+            //tilesetController.Location = new System.Drawing.Point(30, 30);
+            //Controls.Add(tilesetController);
+            controlDocker.AddToBottomDock(tilesetController);
 
             Tilesets = new List<Texture>();
             TilesetString = new List<string>();
@@ -132,7 +133,8 @@ namespace EGMapEditor
 
         private void MapEditor_Resize(object sender, EventArgs e)
         {
-            Thread.Sleep(10);
+            mapsContainer.Height = Size.Height - 20;
+            controlDocker.Height = Size.Height - 20;
         }
     }
 }
