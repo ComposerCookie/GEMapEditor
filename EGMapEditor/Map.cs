@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EGMapEditor
 {
@@ -40,6 +35,12 @@ namespace EGMapEditor
         {
             tiles.Add(new Tile[Width * Height]);
             layerNames.Add("Unnamed Layer");
+        }
+
+        public void RemoveLayer(int index)
+        {
+            tiles.RemoveAt(index);
+            layerNames.RemoveAt(index);
         }
 }
 }

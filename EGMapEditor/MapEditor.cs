@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Threading;
 using SFML.Graphics;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace EGMapEditor
 {
@@ -43,31 +44,38 @@ namespace EGMapEditor
 
         public bool DrawGridOnMaps { get; set; }
 
+        public List<Map> ServerLoadedMaps { get; set; }
+        public List<Map> LocalLoadedMaps { get; set; }
+        public List<Map> SessionMaps { get; set; }
+
         public MapEditor()
         {
+            _instance = this;
             InitializeComponent();
 
-            _instance = this;
-
-            tilesetController = new TilesetController();
-            tilesetController.Name = "tilesetController";
-            tilesetController.Size = new System.Drawing.Size(380, 400);
-            //tilesetController.Dock = DockStyle.Left;
-            //tilesetController.Location = new System.Drawing.Point(30, 30);
-            //Controls.Add(tilesetController);
-            controlDocker.AddToBottomDock(tilesetController);
+            tilesetController = new TilesetController
+            {
+                Name = "tilesetController",
+                Size = new System.Drawing.Size(380, 400)
+            };
+            tilesetController.Show(dockSecondary,DockState.DockRight);
 
             Tilesets = new List<Texture>();
             TilesetString = new List<string>();
             SelectingArea = new List<SelectedTileArea>();
 
             LoadTilesets();
-
         }
 
-        private void MapEditor_Load(object sender, EventArgs e)
+        public void OpenMap(Map m)
         {
-            
+            MapController mc = new MapController(m) { Dock = DockStyle.Fill };
+            mc.Show(dockPrimary, DockState.Document);
+        }
+
+        private void chkGrid_CheckedChanged(object sender, EventArgs e)
+        {
+            //MapEditor.Instance.DrawGridOnMaps = chkGrid.Checked;
         }
 
         private void MapEditor_Shown(object sender, EventArgs e)
@@ -128,13 +136,13 @@ namespace EGMapEditor
 
         private void menuAddMap_Click(object sender, EventArgs e)
         {
-            mapsContainer.OpenMap(new Map());
+            OpenMap(new Map());
         }
 
         private void MapEditor_Resize(object sender, EventArgs e)
         {
-            mapsContainer.Height = Size.Height - 20;
-            controlDocker.Height = Size.Height - 20;
+            dockPrimary.Height = Size.Height - 20;
+            dockSecondary.Height = Size.Height - 20;
         }
     }
 }

@@ -43,6 +43,7 @@
             this.trvLayers.Name = "trvLayers";
             this.trvLayers.Size = new System.Drawing.Size(284, 280);
             this.trvLayers.TabIndex = 0;
+            this.trvLayers.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvLayers_AfterSelect);
             // 
             // btnAddLayer
             // 
@@ -71,6 +72,7 @@
             this.btnMoveLayerUp.TabIndex = 3;
             this.btnMoveLayerUp.Text = "^";
             this.btnMoveLayerUp.UseVisualStyleBackColor = true;
+            this.btnMoveLayerUp.Click += new System.EventHandler(this.btnMoveLayerUp_Click);
             // 
             // btnMoveLayerDown
             // 
@@ -80,6 +82,7 @@
             this.btnMoveLayerDown.TabIndex = 4;
             this.btnMoveLayerDown.Text = "v";
             this.btnMoveLayerDown.UseVisualStyleBackColor = true;
+            this.btnMoveLayerDown.Click += new System.EventHandler(this.btnMoveLayerDown_Click);
             // 
             // btnDeleteLayer
             // 
@@ -89,6 +92,7 @@
             this.btnDeleteLayer.TabIndex = 5;
             this.btnDeleteLayer.Text = "Rem";
             this.btnDeleteLayer.UseVisualStyleBackColor = true;
+            this.btnDeleteLayer.Click += new System.EventHandler(this.btnDeleteLayer_Click);
             // 
             // btnDuplicateLayer
             // 
