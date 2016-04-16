@@ -16,60 +16,67 @@ namespace EGMapEditor
         //public Event UndoHappened As EventHandler(Of UndoRedoEventArgs)
         //public Event RedoHappened As EventHandler(Of UndoRedoEventArgs)
 
-        public Event UndoHappened As EventHandler(Of UndoRedoEventArgs)
-        public Event RedoHappened As EventHandler(Of UndoRedoEventArgs)
+        public event EventHandler<UndoRedoEventArgs> UndoHappened;
+        public event EventHandler<UndoRedoEventArgs> RedoHappened;
 
 
-        public void New() {
-            UndoStack = New Stack(Of T)
-            RedoStack = New Stack(Of T)
+        public void New()
+        {
+            UndoStack = new Stack<T>();
+            RedoStack = new Stack<T>();
         }
 
 
-        public void Clear() {
-            UndoStack.Clear()
-            RedoStack.Clear()
-            CurrentItem = Nothing
+        public void Clear()
+        {
+            UndoStack.Clear();
+            RedoStack.Clear();
+            CurrentItem = default(T);
         }
 
-        public void AddItem(ByVal item As T)
-            If CurrentItem IsNot Nothing Then UndoStack.Push(CurrentItem)
-            CurrentItem = item
-            RedoStack.Clear()
+        public void AddItem(T item)
+        {
+            if (!CurrentItem.Equals(default(T)))
+            {
+                UndoStack.Push(CurrentItem);
+            }
+            CurrentItem = item;
+            RedoStack.Clear();
         }
 
 
         public void Undo() {
-            RedoStack.Push(CurrentItem)
-            CurrentItem = UndoStack.Pop()
-            RaiseEvent UndoHappened(Me, New UndoRedoEventArgs(CurrentItem))
+            RedoStack.Push(CurrentItem);
+            CurrentItem = UndoStack.Pop();
+            UndoHappened(this, new UndoRedoEventArgs(CurrentItem));
         }
 
 
         public void Redo() {
-            UndoStack.Push(CurrentItem)
-            CurrentItem = RedoStack.Pop
-            RaiseEvent RedoHappened(Me, New UndoRedoEventArgs(CurrentItem))
+            UndoStack.Push(CurrentItem);
+            CurrentItem = RedoStack.Pop();
+            RedoHappened(this, new UndoRedoEventArgs(CurrentItem));
         }
 
 
-        public Function CanUndo() { As Boolean
-            Return UndoStack.Count > 0
-        End Function
+        public bool CanUndo()
+        {
+            return UndoStack.Count > 0;
+        }
 
+        public bool CanRedo()
+        {
+            return RedoStack.Count > 0;
+        }
 
-        public Function CanRedo() { As Boolean
-            Return RedoStack.Count > 0
-        End Function
+        public List<T> UndoItems()
+        {
+            return UndoStack.ToList();
+        }
 
-
-        public Function UndoItems() { As List(Of T)
-            Return UndoStack.ToList
-        End Function
-
-
-        public Function RedoItems() { As List(Of T)
-            Return RedoStack.ToList
-        End Function
+        public List<T> RedoItems()
+        {
+            return RedoStack.ToList();
+        }
     }
 }

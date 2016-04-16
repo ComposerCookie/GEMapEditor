@@ -67,6 +67,7 @@
             this.mapViewer.Text = null;
             this.mapViewer.View = null;
             this.mapViewer.Render += new SFML.Winforms.SFMLSurface.NullEventArgs(this.mapViewer_Render);
+            this.mapViewer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mapViewer_KeyPress);
             this.mapViewer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapViewer_MouseDown);
             this.mapViewer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapViewer_MouseMove);
             this.mapViewer.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapViewer_MouseUp);
@@ -74,7 +75,7 @@
             // 
             // MapController
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
             this.Controls.Add(this.mapViewer);

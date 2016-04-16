@@ -112,6 +112,7 @@
       <DependentUpon>ToolPropertiesViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="UndoRedo.cs" />
+    <Compile Include="UndoRedoEventArgs.cs" />
     <EmbeddedResource Include="ControlDocker.resx">
       <DependentUpon>ControlDocker.cs</DependentUpon>
     </EmbeddedResource>

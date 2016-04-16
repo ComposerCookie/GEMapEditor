@@ -5,13 +5,11 @@ namespace EGMapEditor
     public struct Tile
     {
         public int id;
-        public string tilesetName;
         public int tileset;
 
-        public Tile(int _id, string name, int ts)
+        public Tile(int _id, int ts)
         {
             id = _id;
-            tilesetName = name;
             tileset = ts;
         }
     }

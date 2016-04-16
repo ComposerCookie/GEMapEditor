@@ -46,7 +46,7 @@ namespace EGMapEditor
 
         public List<Map> ServerLoadedMaps { get; set; }
         public List<Map> LocalLoadedMaps { get; set; }
-        public List<Map> SessionMaps { get; set; }
+        public List<Map> SessionMaps { get; set; } 
 
         public MapEditor()
         {

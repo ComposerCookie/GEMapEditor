@@ -65,7 +65,7 @@ namespace EGMapEditor
                 viewingMap.tiles[viewingMap.tiles.Count - trvLayers.SelectedNode.Index] = viewingMap.tiles[viewingMap.tiles.Count - trvLayers.SelectedNode.Index + 1];
                 viewingMap.tiles[viewingMap.tiles.Count - trvLayers.SelectedNode.Index - 1] = temp;
 
-                string temp2 = viewingMap.layerNames.[viewingMap.tiles.Count - trvLayers.SelectedNode.Index];
+                string temp2 = viewingMap.layerNames[viewingMap.tiles.Count - trvLayers.SelectedNode.Index];
                 viewingMap.layerNames[viewingMap.tiles.Count - trvLayers.SelectedNode.Index] = viewingMap.layerNames[viewingMap.tiles.Count - trvLayers.SelectedNode.Index + 1];
                 viewingMap.layerNames[viewingMap.tiles.Count - trvLayers.SelectedNode.Index - 1] = temp2;
 
