@@ -1,9 +1,8 @@
 ﻿using System.Windows.Forms;
-using WeifenLuo.WinFormsUI.Docking;
 
 namespace EGMapEditor
 {
-    public partial class ProjectExplorer : DockContent
+    public partial class ProjectExplorer : UserControl
     {
         public ProjectExplorer()
         {

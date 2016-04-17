@@ -48,12 +48,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlDocker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ControlDocker.Designer.cs">
-      <DependentUpon>ControlDocker.cs</DependentUpon>
-    </Compile>
     <Compile Include="Map.cs" />
     <Compile Include="DockContent\MapController.cs">
       <SubType>Form</SubType>
@@ -73,8 +67,9 @@
     <Compile Include="MapLayersViewer.Designer.cs">
       <DependentUpon>MapLayersViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pencil.cs" />
     <Compile Include="ProjectExplorer.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProjectExplorer.Designer.cs">
       <DependentUpon>ProjectExplorer.cs</DependentUpon>
@@ -85,6 +80,7 @@
     <Compile Include="MapPropertiesViewer.Designer.cs">
       <DependentUpon>MapPropertiesViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="SizableTool.cs" />
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,11 +107,10 @@
     <Compile Include="ToolPropertiesViewer.Designer.cs">
       <DependentUpon>ToolPropertiesViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools.cs" />
+    <Compile Include="ToolType.cs" />
     <Compile Include="UndoRedo.cs" />
     <Compile Include="UndoRedoEventArgs.cs" />
-    <EmbeddedResource Include="ControlDocker.resx">
-      <DependentUpon>ControlDocker.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DockContent\MapController.resx">
       <DependentUpon>MapController.cs</DependentUpon>
     </EmbeddedResource>

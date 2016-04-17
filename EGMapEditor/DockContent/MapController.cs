@@ -38,6 +38,7 @@ namespace EGMapEditor
             // MapViewer Initializers
             tempSprite = new Sprite();
             lines = new List<Vertex[]>();
+            UndoRedoStack = new UndoRedo<List<PlacedTile>>();
             UndoRedoStack.New();
             pressedDown = false;
 

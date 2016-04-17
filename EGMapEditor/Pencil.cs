@@ -8,5 +8,6 @@ namespace EGMapEditor
 {
     class Pencil
     {
+
     }
 }

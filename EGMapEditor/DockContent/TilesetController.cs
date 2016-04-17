@@ -105,22 +105,26 @@ namespace EGMapEditor
             offsetX = offX;
             offsetY = offY;
             if (tilesetViewer.View != null)
+            {
                 tilesetViewer.View.Center = new SFML.System.Vector2f(offX + Size.Width / 2, offY + Size.Height / 2);
+                tilesetViewer_Render();
+            }
         }
 
         #region Events
 
         private void tilesetViewer_Resize(object sender, EventArgs e)
         {
-            tilesetViewer.RenderSurface.Size = new SFML.System.Vector2u((uint)Size.Width, (uint)Size.Height);
+            if (tilesetViewer.RenderSurface == null) return;
+            tilesetViewer.RenderSurface.Size = new SFML.System.Vector2u((uint)Size.Width - 22, (uint)Size.Height - 97);
             tilesetViewer.View = new SFML.Graphics.View
             {
-                Center = new SFML.System.Vector2f(Size.Width / 2, Size.Height / 2),
-                Size = new SFML.System.Vector2f(Size.Width, Size.Height)
+                Center = new SFML.System.Vector2f((Size.Width - 22) / 2, (Size.Height - 97) / 2),
+                Size = new SFML.System.Vector2f(Size.Width - 22, Size.Height - 97)
             };
         }
 
-        private void tilesetViewer_Render(object sender, EventArgs e)
+        private void tilesetViewer_Render()
         {
             if (tempSprite != null)
                 tilesetViewer.Draw(tempSprite);
@@ -208,6 +212,7 @@ namespace EGMapEditor
 
         }
         #endregion
+
         #endregion
     }
 }
