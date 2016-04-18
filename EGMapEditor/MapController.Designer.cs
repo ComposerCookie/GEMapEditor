@@ -58,6 +58,7 @@
             this.Controls.Add(this.hScrTileset);
             this.Name = "MapController";
             this.Size = new System.Drawing.Size(620, 620);
+            this.Load += new System.EventHandler(this.MapController_Load);
             this.Resize += new System.EventHandler(this.MapController_Resize);
             this.ResumeLayout(false);
 

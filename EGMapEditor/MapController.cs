@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace EGMapEditor
@@ -31,8 +26,13 @@ namespace EGMapEditor
         {
             hScrTileset.Width = Size.Width - 22;
             vScrTileset.Height = Size.Height - 22;
+
+            Thread.Sleep(10);
+
             mapViewer.Width = Size.Width - 22;
             mapViewer.Height = Size.Height - 22;
+
+            Thread.Sleep(10);
         }
 
         private void vScrTileset_Scroll(object sender, ScrollEventArgs e)
@@ -43,6 +43,11 @@ namespace EGMapEditor
         private void hScrTileset_Scroll(object sender, ScrollEventArgs e)
         {
             mapViewer.moveCamera(hScrTileset.Value, vScrTileset.Value);
+        }
+
+        private void MapController_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

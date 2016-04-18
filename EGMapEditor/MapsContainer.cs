@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace EGMapEditor
@@ -33,7 +28,13 @@ namespace EGMapEditor
 
         private void MapsContainer_Resize(object sender, EventArgs e)
         {
-            tabMapsController.Height = Size.Height - 117;
+            Thread.Sleep(10);
+            tabMapsController.Height = Size.Height - 26;
+        }
+
+        private void chkGrid_CheckedChanged(object sender, EventArgs e)
+        {
+            MapEditor.Instance.DrawGridOnMaps = chkGrid.Checked;
         }
     }
 }

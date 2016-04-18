@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SFML.Net, Version=2.2.0.0, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\packages\SFML.Net.Portable.1.1.0\lib\SFML.Net.dll</HintPath>
+      <HintPath>..\packages\SFML.Net.Portable.1.1.1\lib\SFML.Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -42,13 +42,17 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.3.0.0-alpha8\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Map.cs" />
-    <Compile Include="MapController.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="DockContent\MapController.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MapController.Designer.cs">
+    <Compile Include="DockContent\MapController.Designer.cs">
       <DependentUpon>MapController.cs</DependentUpon>
     </Compile>
     <Compile Include="MapEditor.cs">
@@ -57,24 +61,26 @@
     <Compile Include="MapEditor.Designer.cs">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapsContainer.cs">
+    <Compile Include="MapLayersViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MapsContainer.Designer.cs">
-      <DependentUpon>MapsContainer.cs</DependentUpon>
+    <Compile Include="MapLayersViewer.Designer.cs">
+      <DependentUpon>MapLayersViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapViewer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MapViewer.Designer.cs">
-      <DependentUpon>MapViewer.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Pencil.cs" />
     <Compile Include="ProjectExplorer.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProjectExplorer.Designer.cs">
       <DependentUpon>ProjectExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="MapPropertiesViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MapPropertiesViewer.Designer.cs">
+      <DependentUpon>MapPropertiesViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SizableTool.cs" />
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,32 +89,42 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TilesetController.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="DockContent\TilesetController.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TilesetController.Designer.cs">
+    <Compile Include="DockContent\TilesetController.Designer.cs">
       <DependentUpon>TilesetController.cs</DependentUpon>
     </Compile>
-    <Compile Include="TilesetViewer.cs">
+    <Compile Include="ToolboxViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TilesetViewer.Designer.cs">
-      <DependentUpon>TilesetViewer.cs</DependentUpon>
+    <Compile Include="ToolboxViewer.Designer.cs">
+      <DependentUpon>ToolboxViewer.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MapController.resx">
+    <Compile Include="ToolPropertiesViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolPropertiesViewer.Designer.cs">
+      <DependentUpon>ToolPropertiesViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools.cs" />
+    <Compile Include="ToolType.cs" />
+    <Compile Include="UndoRedo.cs" />
+    <Compile Include="UndoRedoEventArgs.cs" />
+    <EmbeddedResource Include="DockContent\MapController.resx">
       <DependentUpon>MapController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MapEditor.resx">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MapsContainer.resx">
-      <DependentUpon>MapsContainer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MapViewer.resx">
-      <DependentUpon>MapViewer.cs</DependentUpon>
+    <EmbeddedResource Include="MapLayersViewer.resx">
+      <DependentUpon>MapLayersViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectExplorer.resx">
       <DependentUpon>ProjectExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapPropertiesViewer.resx">
+      <DependentUpon>MapPropertiesViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
@@ -122,11 +138,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TilesetController.resx">
+    <EmbeddedResource Include="DockContent\TilesetController.resx">
       <DependentUpon>TilesetController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TilesetViewer.resx">
-      <DependentUpon>TilesetViewer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -143,6 +156,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -335,7 +335,6 @@
             this.MinimizeBox = false;
             this.Name = "MapEditor";
             this.Text = "MapEditor";
-            this.Shown += new System.EventHandler(this.MapEditor_Shown);
             this.Resize += new System.EventHandler(this.MapEditor_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

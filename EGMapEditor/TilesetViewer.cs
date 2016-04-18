@@ -21,6 +21,8 @@ namespace EGMapEditor
 
         public bool DrawGrid { get; set; }
 
+        //Font DEBUGGINGFONT = new SFML.Graphics.Font("arial.ttf");
+
         private int GetMaxTilePerRow
         {
             get { return (int)tempSprite.Texture.Size.X / MapEditor.Instance.TILE_WIDTH; }
@@ -46,19 +48,33 @@ namespace EGMapEditor
             grabRect.OutlineColor = SFML.Graphics.Color.Red;
             grabRect.OutlineThickness = 2;
 
-            Application.Idle += Render;
+            Application.Idle += render;
         }
 
-        private void Render(object sender, EventArgs e)
+        private void render(object sender, EventArgs e)
         {
             if (screen != null)
             {
                 screen.Clear(SFML.Graphics.Color.Transparent);
 
-                screen.Draw(tempSprite);
+                if (tempSprite != null)
+                    screen.Draw(tempSprite);
+
                 if (DrawGrid)
                     foreach (Vertex[] v in lines)
                         screen.Draw(v, PrimitiveType.Lines);
+
+
+
+                /*for (int y = 0; y < tempSprite.Texture.Size.Y / 32; y++)
+                {
+                    for (int x = 0; x < tempSprite.Texture.Size.X / 32; x++)
+                    {
+                        screen.Draw(new Text("" + (y * GetMaxTilePerRow + x), DEBUGGINGFONT) { Position = new SFML.System.Vector2f(x * 32, y * 32), Color = SFML.Graphics.Color.White, CharacterSize = 10 });
+                    }
+                }*/
+
+
 
                 screen.Draw(grabRect);
 
@@ -90,7 +106,7 @@ namespace EGMapEditor
             offsetY = offY;
             view.Center = new SFML.System.Vector2f(offX + Size.Width / 2, offY + Size.Height / 2);
             screen.SetView(view);
-            Render(null, null);
+            render(null, null);
         }
 
         private void TilesetViewer_Resize(object sender, EventArgs e)
@@ -110,7 +126,7 @@ namespace EGMapEditor
                 pressedDown = true;
                 downX = e.Location.X / tempx * tempx;
                 downY = e.Location.Y / tempy * tempy;
-                grabRect.Position = new SFML.System.Vector2f(downX + offsetX, downY + offsetY);
+                grabRect.Position = new SFML.System.Vector2f((e.Location.X + offsetX) / tempx * tempx, (e.Location.Y + offsetY) / tempy * tempy);
                 grabRect.Size = new SFML.System.Vector2f(tempx, tempy);
             }
         }
@@ -125,7 +141,7 @@ namespace EGMapEditor
                 int extraOffsetY = (e.Location.Y - downY) < 0 ? -tempy : tempy;
                 grabRect.Size = new SFML.System.Vector2f((e.Location.X - downX) / tempx * tempx + extraOffsetX, (e.Location.Y - downY) /tempy * tempy + extraOffsetY);
 
-                Render(null, null);
+                render(null, null);
             }
         }
 
@@ -153,7 +169,8 @@ namespace EGMapEditor
                 {
                     for (int x = 0; x < grabRect.Size.X / MapEditor.Instance.TILE_WIDTH; x++)
                     {
-                        MapEditor.Instance.SelectingArea.Add(new SelectedTileArea(x, y, (int)(grabRect.Position.Y / tempy + y) * GetMaxTilePerRow + (int)(grabRect.Position.X / tempx + x)));
+                        MapEditor.Instance.SelectingArea.Add(new SelectedTileArea(x, y, (int)(grabRect.Position.Y / tempy + y) * GetMaxTilePerRow + (int)(grabRect.Position.X / tempx + x), MapEditor.Instance.CurrentTileset));
+                        //Console.Write((int)(grabRect.Position.Y / tempy + y) * GetMaxTilePerRow + (int)(grabRect.Position.X / tempx + x) + " ");
                     }
                 }
             }
@@ -165,6 +182,12 @@ namespace EGMapEditor
             {
 
             }
+            
+        }
+
+        private void TilesetViewer_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

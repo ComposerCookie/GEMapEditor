@@ -2,7 +2,6 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Threading;
 using SFML.Graphics;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -27,13 +26,12 @@ namespace EGMapEditor
     public partial class MapEditor : Form
     {
         static private MapEditor _instance;
-        public static MapEditor Instance { get { return _instance; } }
+        public static MapEditor Instance => _instance ?? (_instance = new MapEditor());
 
         public int TILE_WIDTH { get { return 16; } }
         public int TILE_HEIGHT { get { return 16; } }
 
         private TilesetController tilesetController;
-        private ProjectExplorer projectExplorer;
 
         private string TilesetPath() { return "/Tileset/"; }
         public List<Texture> Tilesets { get; set; }
@@ -49,7 +47,7 @@ namespace EGMapEditor
         public List<Map> LocalLoadedMaps { get; set; }
         public List<Map> SessionMaps { get; set; } 
 
-        public MapEditor()
+        private MapEditor()
         {
             _instance = this;
             InitializeComponent();
@@ -57,16 +55,9 @@ namespace EGMapEditor
             tilesetController = new TilesetController
             {
                 Name = "tilesetController",
-                Size = new System.Drawing.Size(500, 500)
+                Size = new System.Drawing.Size(380, 400)
             };
-            tilesetController.Show(dockSecondary, DockState.DockRight);
-
-            projectExplorer = new ProjectExplorer
-            {
-                Name = "projectExplorer",
-                Size = new System.Drawing.Size(500, 500)
-            };
-            projectExplorer.Show(dockSecondary, DockState.DockTop);
+            tilesetController.Show(dockSecondary,DockState.DockRight);
 
             Tilesets = new List<Texture>();
             TilesetString = new List<string>();
@@ -77,23 +68,13 @@ namespace EGMapEditor
 
         public void OpenMap(Map m)
         {
-            MapController mc = new MapController(m)
-            {
-                Dock = DockStyle.Fill
-            };
+            var mc = new MapController(m) { Dock = DockStyle.Fill };
             mc.Show(dockPrimary, DockState.Document);
         }
 
         private void chkGrid_CheckedChanged(object sender, EventArgs e)
         {
             //MapEditor.Instance.DrawGridOnMaps = chkGrid.Checked;
-        }
-
-        private void MapEditor_Shown(object sender, EventArgs e)
-        {
-            this.Hide();
-            StartForm startForm = new StartForm();
-            startForm.ShowDialog();
         }
 
         private void LoadTilesets()

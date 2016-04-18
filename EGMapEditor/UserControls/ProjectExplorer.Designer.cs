@@ -1,6 +1,6 @@
 ﻿namespace EGMapEditor
 {
-    partial class MapViewer
+    partial class ProjectExplorer
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,22 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // MapViewer
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(220, 568);
+            this.treeView1.TabIndex = 0;
+            // 
+            // ProjectExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "MapViewer";
-            this.Size = new System.Drawing.Size(261, 250);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapViewer_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapViewer_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MapViewer_MouseUp);
-            this.Resize += new System.EventHandler(this.MapViewer_Resize);
+            this.Controls.Add(this.treeView1);
+            this.Name = "ProjectExplorer";
+            this.Size = new System.Drawing.Size(220, 568);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.TreeView treeView1;
     }
 }

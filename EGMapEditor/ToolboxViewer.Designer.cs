@@ -1,6 +1,6 @@
 ﻿namespace EGMapEditor
 {
-    partial class MapViewer
+    partial class ToolboxViewer
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,20 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // MapViewer
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "MapViewer";
-            this.Size = new System.Drawing.Size(261, 250);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapViewer_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapViewer_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MapViewer_MouseUp);
-            this.Resize += new System.EventHandler(this.MapViewer_Resize);
-            this.ResumeLayout(false);
-
         }
 
         #endregion
