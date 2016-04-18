@@ -95,6 +95,9 @@ namespace EGMapEditor
             if (clickedX == lastDownTileX && clickedY == lastDownTileY)
                 return;
 
+            if (MapEditor.Instance.SelectingArea == null)
+                return;
+
             foreach (SelectedTileArea st in MapEditor.Instance.SelectingArea)
             {
                 if (clickedY + clickedX + st.offsetY * map.Width + st.offsetX < map.tiles[CurrentEditLayer].Length)
@@ -112,11 +115,11 @@ namespace EGMapEditor
         #region Events
         private void mapViewer_Resize(object sender, EventArgs e)
         {
-            mapViewer.RenderSurface.Size = new SFML.System.Vector2u((uint)Size.Width, (uint)Size.Height);
+            mapViewer.RenderSurface.Size = new SFML.System.Vector2u((uint)hScrTileset.Size.Width, (uint)vScrTileset.Size.Height);
             mapViewer.View = new SFML.Graphics.View
             {
-                Center = new SFML.System.Vector2f(Size.Width / 2, Size.Height / 2),
-                Size = new SFML.System.Vector2f(Size.Width, Size.Height)
+                Center = new SFML.System.Vector2f(hScrTileset.Size.Width / 2, vScrTileset.Size.Height / 2),
+                Size = new SFML.System.Vector2f(hScrTileset.Size.Width, vScrTileset.Size.Height)
             };
         }
 
@@ -201,10 +204,15 @@ namespace EGMapEditor
             }
         }
 
-        #endregion
 
         #endregion
 
+        #endregion
 
+        private void MapController_Resize(object sender, EventArgs e)
+        {
+            vScrTileset.Height = Size.Height - 22;
+            hScrTileset.Width = Size.Width - 22;
+        }
     }
 }

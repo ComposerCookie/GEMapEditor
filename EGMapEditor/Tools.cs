@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace EGMapEditor
 {
-    class Tools
+    interface Tools
     {
-        public virtual List<KeyValuePair<int, int>> Use()
-        {
-            return new List<KeyValuePair<int, int>>() { new KeyValuePair<int, int>(0, 0) };
-        }
+        ToolType ToolType { get; set; }
+        List<KeyValuePair<int, int>> Use();
     }
 }

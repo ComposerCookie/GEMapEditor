@@ -67,7 +67,7 @@
     <Compile Include="MapLayersViewer.Designer.cs">
       <DependentUpon>MapLayersViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pencil.cs" />
+    <Compile Include="PointTool.cs" />
     <Compile Include="ProjectExplorer.cs">
       <SubType>Form</SubType>
     </Compile>

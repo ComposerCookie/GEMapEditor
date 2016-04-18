@@ -112,7 +112,7 @@
             this.tilesetViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tilesetViewer.AutoDraw = false;
+            this.tilesetViewer.AutoDraw = true;
             this.tilesetViewer.ClearColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.tilesetViewer.Location = new System.Drawing.Point(0, 0);
             this.tilesetViewer.Margin = new System.Windows.Forms.Padding(4);
@@ -132,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 411);
+            this.ClientSize = new System.Drawing.Size(374, 412);
             this.Controls.Add(this.tilesetViewer);
             this.Controls.Add(this.chkGrid);
             this.Controls.Add(this.btnTSDec);
@@ -142,8 +142,8 @@
             this.Controls.Add(this.hScrTileset);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.MinimumSize = new System.Drawing.Size(360, 450);
             this.Name = "TilesetController";
+            this.Resize += new System.EventHandler(this.TilesetController_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 

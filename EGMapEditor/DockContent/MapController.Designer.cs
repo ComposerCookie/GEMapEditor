@@ -55,9 +55,12 @@
             // 
             // mapViewer
             // 
-            this.mapViewer.AutoDraw = false;
+            this.mapViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mapViewer.AutoDraw = true;
             this.mapViewer.ClearColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.mapViewer.Location = new System.Drawing.Point(0, 1);
+            this.mapViewer.Location = new System.Drawing.Point(0, 0);
             this.mapViewer.Margin = new System.Windows.Forms.Padding(4);
             this.mapViewer.Name = "mapViewer";
             this.mapViewer.Size = new System.Drawing.Size(480, 407);
@@ -82,6 +85,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "MapController";
+            this.Resize += new System.EventHandler(this.MapController_Resize);
             this.ResumeLayout(false);
 
         }
