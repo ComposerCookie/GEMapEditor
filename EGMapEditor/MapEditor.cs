@@ -2,9 +2,8 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Threading;
+using System.Windows.Forms.DockPanel;
 using SFML.Graphics;
-using WeifenLuo.WinFormsUI.Docking;
 
 namespace EGMapEditor
 {

@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using WeifenLuo.WinFormsUI.Docking;
+﻿using System.Windows.Forms.DockPanel;
 
 namespace EGMapEditor
 {
