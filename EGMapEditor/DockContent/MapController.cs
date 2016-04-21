@@ -118,6 +118,7 @@ namespace EGMapEditor
         #region Events
         private void mapViewer_Resize(object sender, EventArgs e)
         {
+            if (mapViewer.RenderSurface == null) return;
             mapViewer.RenderSurface.Size = new Vector2u((uint)hScrTileset.Size.Width, (uint)vScrTileset.Size.Height);
             mapViewer.View = new SFML.Graphics.View
             {
