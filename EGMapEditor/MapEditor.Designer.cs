@@ -186,6 +186,7 @@
             // dockPrimary
             // 
             this.dockPrimary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockPrimary.DocumentStyle = System.Windows.Forms.DockPanel.DocumentStyle.DockingWindow;
             this.dockPrimary.Location = new System.Drawing.Point(0, 0);
             this.dockPrimary.Name = "dockPrimary";
             this.dockPrimary.Size = new System.Drawing.Size(515, 789);
@@ -194,6 +195,7 @@
             // dockSecondary
             // 
             this.dockSecondary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockSecondary.DocumentStyle = System.Windows.Forms.DockPanel.DocumentStyle.DockingWindow;
             this.dockSecondary.Location = new System.Drawing.Point(0, 0);
             this.dockSecondary.Name = "dockSecondary";
             this.dockSecondary.Size = new System.Drawing.Size(1026, 789);
