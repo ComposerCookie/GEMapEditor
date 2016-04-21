@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AreaTool.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="DockContent\MapController.cs">
       <SubType>Form</SubType>
@@ -67,7 +68,7 @@
     <Compile Include="MapLayersViewer.Designer.cs">
       <DependentUpon>MapLayersViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pencil.cs" />
+    <Compile Include="PointTool.cs" />
     <Compile Include="ProjectExplorer.cs">
       <SubType>Form</SubType>
     </Compile>

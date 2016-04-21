@@ -137,7 +137,7 @@ namespace EGMapEditor
                         TilesetString.Add(dialog.SafeFileNames[i]);
                     }
                     
-                    CurrentTileset++;
+                    CurrentTileset = Tilesets.Count - 1;
                     tilesetController.UpdateTilesetDisplay();
 
                 }
