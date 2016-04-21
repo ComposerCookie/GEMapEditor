@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Forms.DockPanel;
+
 using SFML.Graphics;
+using SFML.Window;
+using SFML.System;
 
 namespace EGMapEditor
 {
@@ -53,9 +56,9 @@ namespace EGMapEditor
             int tempy = MapEditor.Instance.TILE_HEIGHT;
 
             for (int i = 0; i < m.Width; i++)
-                lines.Add(new Vertex[] { new Vertex(new SFML.System.Vector2f(i * tempx, 0)), new Vertex(new SFML.System.Vector2f(i * tempx, map.Height * tempy)) });
+                lines.Add(new Vertex[] { new Vertex(new Vector2f(i * tempx, 0)), new Vertex(new Vector2f(i * tempx, map.Height * tempy)) });
             for (int i = 0; i < m.Height; i++)
-                lines.Add(new Vertex[] { new Vertex(new SFML.System.Vector2f(0, i * tempy)), new Vertex(new SFML.System.Vector2f(map.Width * tempx, i * tempy)) });
+                lines.Add(new Vertex[] { new Vertex(new Vector2f(0, i * tempy)), new Vertex(new Vector2f(map.Width * tempx, i * tempy)) });
 
             UndoRedoStack.UndoHappened += UndoRedoStack_UndoHappened;
             UndoRedoStack.RedoHappened += UndoRedoStack_RedoHappened;
@@ -81,7 +84,7 @@ namespace EGMapEditor
             var offY = vScrTileset.Value;
             offsetX = offX;
             offsetY = offY;
-            mapViewer.View.Center = new SFML.System.Vector2f(offX + Size.Width / 2, offY + Size.Height / 2);
+            mapViewer.View.Center = new Vector2f(offX + Size.Width / 2, offY + Size.Height / 2);
         }
 
         private void placeTile(int mouseX, int mouseY)
@@ -115,16 +118,19 @@ namespace EGMapEditor
         #region Events
         private void mapViewer_Resize(object sender, EventArgs e)
         {
-            mapViewer.RenderSurface.Size = new SFML.System.Vector2u((uint)hScrTileset.Size.Width, (uint)vScrTileset.Size.Height);
+            mapViewer.RenderSurface.Size = new Vector2u((uint)hScrTileset.Size.Width, (uint)vScrTileset.Size.Height);
             mapViewer.View = new SFML.Graphics.View
             {
-                Center = new SFML.System.Vector2f(hScrTileset.Size.Width / 2, vScrTileset.Size.Height / 2),
-                Size = new SFML.System.Vector2f(hScrTileset.Size.Width, vScrTileset.Size.Height)
+                Center = new Vector2f(hScrTileset.Size.Width / 2, vScrTileset.Size.Height / 2),
+                Size = new Vector2f(hScrTileset.Size.Width, vScrTileset.Size.Height)
             };
         }
 
         private void mapViewer_Render()
         {
+            int tempx = MapEditor.Instance.TILE_WIDTH;
+            int tempy = MapEditor.Instance.TILE_HEIGHT;
+
             for (int l = 0; l < map.tiles.Count; l++)
             {
                 for (int y = 0; y < map.Height; y++)
@@ -134,11 +140,9 @@ namespace EGMapEditor
                         if (map.tiles[l][y * map.Width + x].tileset >= 0 && map.tiles[l][y * map.Width + x].id >= 0)
                         {
                             tempSprite = new Sprite(MapEditor.Instance.Tilesets[map.tiles[l][y * map.Width + x].tileset]);
-                            tempSprite.Position = new SFML.System.Vector2f(x * MapEditor.Instance.TILE_WIDTH, y * MapEditor.Instance.TILE_HEIGHT);
-                            tempSprite.TextureRect = new IntRect(map.tiles[l][y * map.Width + x].id % (int)(tempSprite.Texture.Size.X / MapEditor.Instance.TILE_WIDTH) * MapEditor.Instance.TILE_WIDTH,
-                                map.tiles[l][y * map.Width + x].id / (int)(tempSprite.Texture.Size.X / MapEditor.Instance.TILE_WIDTH) * MapEditor.Instance.TILE_HEIGHT,
-                                MapEditor.Instance.TILE_WIDTH,
-                                MapEditor.Instance.TILE_HEIGHT);
+                            tempSprite.Position = new Vector2f(x * tempx, y * tempy);
+                            tempSprite.TextureRect = new IntRect(map.tiles[l][y * map.Width + x].id % (int)(tempSprite.Texture.Size.X / tempx) * tempx, 
+                                map.tiles[l][y * map.Width + x].id / (int)(tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy);
                             mapViewer.Draw(tempSprite);
                         }
                     }
@@ -148,6 +152,18 @@ namespace EGMapEditor
             if (MapEditor.Instance.DrawGridOnMaps)
                 foreach (Vertex[] v in lines)
                     mapViewer.RenderSurface.Draw(v, PrimitiveType.Lines); // Because i forgot to include Draw Overloads.
+
+            foreach (SelectedTileArea st in MapEditor.Instance.SelectingArea)
+            {
+                int mouseY = (Mouse.GetPosition(mapViewer.RenderSurface).X + offsetY) / tempy;
+                int mouseX = (Mouse.GetPosition(mapViewer.RenderSurface).X + offsetX) / tempx;
+
+                tempSprite = new Sprite(MapEditor.Instance.Tilesets[st.tileset]);
+                tempSprite.Position = new Vector2f((mouseX + st.offsetX) * tempx, (mouseY + st.offsetY) * tempy);
+
+                tempSprite.TextureRect = new IntRect(st.id % (int)(tempSprite.Texture.Size.X / tempx) * tempx,
+                    st.id / (int)(tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy);
+            }
         }
 
         private void mapViewer_MouseDown(object sender, MouseEventArgs e)

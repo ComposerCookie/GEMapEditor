@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AreaTool.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="DockContent\MapController.cs">
       <SubType>Form</SubType>
