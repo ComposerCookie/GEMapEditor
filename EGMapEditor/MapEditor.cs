@@ -60,7 +60,7 @@ namespace EGMapEditor
                 Name = "tilesetController",
                 Size = new System.Drawing.Size(500, 500)
             };
-            tilesetController.Show(dockSecondary, DockState.DockRight);
+            tilesetController.Show(dockSecondary, DockState.Document);
 
             projectExplorer = new ProjectExplorer
             {
@@ -159,12 +159,14 @@ namespace EGMapEditor
 
         private void menuUndoMap_Click(object sender, EventArgs e)
         {
-            CurrentFocusedMap.Undo();
+            if (CurrentFocusedMap != null)
+                CurrentFocusedMap.Undo();
         }
 
         private void menuRedoMap_Click(object sender, EventArgs e)
         {
-            CurrentFocusedMap.Redo();
+            if (CurrentFocusedMap != null)
+                CurrentFocusedMap.Redo();
         }
     }
 }

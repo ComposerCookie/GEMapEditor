@@ -241,5 +241,10 @@ namespace EGMapEditor
             vScrTileset.Height = Size.Height - 22;
             hScrTileset.Width = Size.Width - 22;
         }
+
+        private void MapController_Enter(object sender, EventArgs e)
+        {
+            MapEditor.Instance.CurrentFocusedMap = this;
+        }
     }
 }

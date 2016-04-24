@@ -85,6 +85,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "MapController";
+            this.Enter += new System.EventHandler(this.MapController_Enter);
             this.Resize += new System.EventHandler(this.MapController_Resize);
             this.ResumeLayout(false);
 
