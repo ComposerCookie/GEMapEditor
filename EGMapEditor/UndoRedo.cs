@@ -36,7 +36,7 @@ namespace EGMapEditor
 
         public void AddItem(T item)
         {
-            if (!CurrentItem.Equals(default(T)))
+            if (CurrentItem != null)
             {
                 UndoStack.Push(CurrentItem);
             }

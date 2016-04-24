@@ -48,6 +48,8 @@ namespace EGMapEditor
         public List<Map> LocalLoadedMaps { get; set; }
         public List<Map> SessionMaps { get; set; } 
 
+        public MapController CurrentFocusedMap { get; set; }
+
         public MapEditor()
         {
             _instance = this;
@@ -153,6 +155,16 @@ namespace EGMapEditor
         {
             dockPrimary.Height = Size.Height - 20;
             dockSecondary.Height = Size.Height - 20;
+        }
+
+        private void menuUndoMap_Click(object sender, EventArgs e)
+        {
+            CurrentFocusedMap.Undo();
+        }
+
+        private void menuRedoMap_Click(object sender, EventArgs e)
+        {
+            CurrentFocusedMap.Redo();
         }
     }
 }

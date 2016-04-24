@@ -87,6 +87,16 @@ namespace EGMapEditor
             mapViewer.View.Center = new Vector2f(offX + Size.Width / 2, offY + Size.Height / 2);
         }
 
+        public void Undo()
+        {
+            UndoRedoStack.Undo();
+        }
+
+        public void Redo()
+        {
+            UndoRedoStack.Redo();
+        }
+
         private void placeTile(int mouseX, int mouseY)
         {
             int tempx = MapEditor.Instance.TILE_WIDTH;
