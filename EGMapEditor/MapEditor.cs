@@ -58,7 +58,7 @@ namespace EGMapEditor
                 Name = "tilesetController",
                 Size = new System.Drawing.Size(500, 500)
             };
-            tilesetController.Show(dockSecondary, DockState.DockRight);
+            tilesetController.Show(dockSecondary, DockState.Document);
 
             projectExplorer = new ProjectExplorer
             {

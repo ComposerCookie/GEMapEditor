@@ -180,7 +180,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dockSecondary);
             this.splitContainer1.Size = new System.Drawing.Size(1545, 789);
-            this.splitContainer1.SplitterDistance = 515;
+            this.splitContainer1.SplitterDistance = 1121;
             this.splitContainer1.TabIndex = 13;
             // 
             // dockPrimary
@@ -189,7 +189,7 @@
             this.dockPrimary.DocumentStyle = System.Windows.Forms.DockPanel.DocumentStyle.DockingWindow;
             this.dockPrimary.Location = new System.Drawing.Point(0, 0);
             this.dockPrimary.Name = "dockPrimary";
-            this.dockPrimary.Size = new System.Drawing.Size(515, 789);
+            this.dockPrimary.Size = new System.Drawing.Size(1121, 789);
             this.dockPrimary.TabIndex = 0;
             // 
             // dockSecondary
@@ -198,7 +198,7 @@
             this.dockSecondary.DocumentStyle = System.Windows.Forms.DockPanel.DocumentStyle.DockingWindow;
             this.dockSecondary.Location = new System.Drawing.Point(0, 0);
             this.dockSecondary.Name = "dockSecondary";
-            this.dockSecondary.Size = new System.Drawing.Size(1026, 789);
+            this.dockSecondary.Size = new System.Drawing.Size(420, 789);
             this.dockSecondary.TabIndex = 2;
             // 
             // MapEditor
