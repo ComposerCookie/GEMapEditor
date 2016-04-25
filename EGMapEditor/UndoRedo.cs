@@ -36,26 +36,34 @@ namespace EGMapEditor
 
         public void AddItem(T item)
         {
-            if (CurrentItem == null)
-                return;
-            if (!CurrentItem.Equals(default(T)))
-            {
-                UndoStack.Push(CurrentItem);
-            }
             CurrentItem = item;
+            UndoStack.Push(CurrentItem);
             RedoStack.Clear();
         }
 
+        public void AddToUndo(T item)
+        {
+            UndoStack.Push(item);
+        }
+
+        public void AddToRedo(T item)
+        {
+            RedoStack.Push(item);
+        }
 
         public void Undo() {
-            RedoStack.Push(CurrentItem);
+            if (!CanUndo())
+                return;
+
             CurrentItem = UndoStack.Pop();
             UndoHappened(this, new UndoRedoEventArgs(CurrentItem));
         }
 
 
         public void Redo() {
-            UndoStack.Push(CurrentItem);
+            if (!CanRedo())
+                return;
+
             CurrentItem = RedoStack.Pop();
             RedoHappened(this, new UndoRedoEventArgs(CurrentItem));
         }
