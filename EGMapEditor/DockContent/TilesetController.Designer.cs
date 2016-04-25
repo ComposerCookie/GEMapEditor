@@ -41,9 +41,9 @@
             // 
             this.hScrTileset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.hScrTileset.Location = new System.Drawing.Point(0, 353);
+            this.hScrTileset.Location = new System.Drawing.Point(0, 434);
             this.hScrTileset.Name = "hScrTileset";
-            this.hScrTileset.Size = new System.Drawing.Size(351, 22);
+            this.hScrTileset.Size = new System.Drawing.Size(476, 22);
             this.hScrTileset.TabIndex = 1;
             this.hScrTileset.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrTileset_Scroll);
             // 
@@ -51,9 +51,9 @@
             // 
             this.vScrTileset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.vScrTileset.Location = new System.Drawing.Point(351, 0);
+            this.vScrTileset.Location = new System.Drawing.Point(476, 0);
             this.vScrTileset.Name = "vScrTileset";
-            this.vScrTileset.Size = new System.Drawing.Size(22, 353);
+            this.vScrTileset.Size = new System.Drawing.Size(22, 434);
             this.vScrTileset.TabIndex = 2;
             this.vScrTileset.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrTileset_Scroll);
             // 
@@ -61,11 +61,11 @@
             // 
             this.txtTileset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTileset.Location = new System.Drawing.Point(57, 378);
-            this.txtTileset.Margin = new System.Windows.Forms.Padding(5);
+            this.txtTileset.Location = new System.Drawing.Point(76, 465);
+            this.txtTileset.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtTileset.Name = "txtTileset";
             this.txtTileset.ReadOnly = true;
-            this.txtTileset.Size = new System.Drawing.Size(201, 19);
+            this.txtTileset.Size = new System.Drawing.Size(267, 22);
             this.txtTileset.TabIndex = 3;
             this.txtTileset.Text = "0/0";
             this.txtTileset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -73,10 +73,10 @@
             // btnTSInc
             // 
             this.btnTSInc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTSInc.Location = new System.Drawing.Point(268, 378);
-            this.btnTSInc.Margin = new System.Windows.Forms.Padding(5);
+            this.btnTSInc.Location = new System.Drawing.Point(357, 465);
+            this.btnTSInc.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnTSInc.Name = "btnTSInc";
-            this.btnTSInc.Size = new System.Drawing.Size(39, 27);
+            this.btnTSInc.Size = new System.Drawing.Size(52, 33);
             this.btnTSInc.TabIndex = 4;
             this.btnTSInc.Text = ">";
             this.btnTSInc.UseVisualStyleBackColor = true;
@@ -85,10 +85,10 @@
             // btnTSDec
             // 
             this.btnTSDec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnTSDec.Location = new System.Drawing.Point(0, 378);
-            this.btnTSDec.Margin = new System.Windows.Forms.Padding(5);
+            this.btnTSDec.Location = new System.Drawing.Point(0, 465);
+            this.btnTSDec.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnTSDec.Name = "btnTSDec";
-            this.btnTSDec.Size = new System.Drawing.Size(39, 27);
+            this.btnTSDec.Size = new System.Drawing.Size(52, 33);
             this.btnTSDec.TabIndex = 5;
             this.btnTSDec.Text = "<";
             this.btnTSDec.UseVisualStyleBackColor = true;
@@ -98,10 +98,10 @@
             // 
             this.chkGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkGrid.AutoSize = true;
-            this.chkGrid.Location = new System.Drawing.Point(325, 377);
-            this.chkGrid.Margin = new System.Windows.Forms.Padding(5);
+            this.chkGrid.Location = new System.Drawing.Point(436, 464);
+            this.chkGrid.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.chkGrid.Name = "chkGrid";
-            this.chkGrid.Size = new System.Drawing.Size(45, 17);
+            this.chkGrid.Size = new System.Drawing.Size(57, 21);
             this.chkGrid.TabIndex = 6;
             this.chkGrid.Text = "Grid";
             this.chkGrid.UseVisualStyleBackColor = true;
@@ -113,11 +113,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tilesetViewer.AutoDraw = true;
-            this.tilesetViewer.ClearColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tilesetViewer.ClearColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(227)))));
             this.tilesetViewer.Location = new System.Drawing.Point(0, 0);
-            this.tilesetViewer.Margin = new System.Windows.Forms.Padding(4);
+            this.tilesetViewer.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.tilesetViewer.Name = "tilesetViewer";
-            this.tilesetViewer.Size = new System.Drawing.Size(351, 353);
+            this.tilesetViewer.Size = new System.Drawing.Size(476, 434);
             this.tilesetViewer.TabIndex = 7;
             this.tilesetViewer.Text = null;
             this.tilesetViewer.View = null;
@@ -130,9 +130,9 @@
             // 
             // TilesetController
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 412);
+            this.ClientSize = new System.Drawing.Size(499, 507);
             this.Controls.Add(this.tilesetViewer);
             this.Controls.Add(this.chkGrid);
             this.Controls.Add(this.btnTSDec);
@@ -141,7 +141,7 @@
             this.Controls.Add(this.vScrTileset);
             this.Controls.Add(this.hScrTileset);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "TilesetController";
             this.Resize += new System.EventHandler(this.TilesetController_Resize);
             this.ResumeLayout(false);
