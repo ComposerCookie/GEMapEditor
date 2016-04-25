@@ -67,7 +67,7 @@ namespace EGMapEditor
         }
 
         #region SFML Control
-        private Map map;
+        public Map map { get; set; }
         private Sprite tempSprite;
         private List<Vertex[]> lines;
         private bool pressedDown;

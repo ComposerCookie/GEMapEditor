@@ -39,6 +39,9 @@
             // 
             // trvLayers
             // 
+            this.trvLayers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.trvLayers.Location = new System.Drawing.Point(0, 0);
             this.trvLayers.Name = "trvLayers";
             this.trvLayers.Size = new System.Drawing.Size(284, 280);
@@ -47,6 +50,7 @@
             // 
             // btnAddLayer
             // 
+            this.btnAddLayer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddLayer.Location = new System.Drawing.Point(1, 286);
             this.btnAddLayer.Name = "btnAddLayer";
             this.btnAddLayer.Size = new System.Drawing.Size(42, 30);
@@ -57,6 +61,7 @@
             // 
             // btnEditLayer
             // 
+            this.btnEditLayer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEditLayer.Location = new System.Drawing.Point(49, 286);
             this.btnEditLayer.Name = "btnEditLayer";
             this.btnEditLayer.Size = new System.Drawing.Size(42, 30);
@@ -66,6 +71,7 @@
             // 
             // btnMoveLayerUp
             // 
+            this.btnMoveLayerUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMoveLayerUp.Location = new System.Drawing.Point(97, 286);
             this.btnMoveLayerUp.Name = "btnMoveLayerUp";
             this.btnMoveLayerUp.Size = new System.Drawing.Size(42, 30);
@@ -76,6 +82,7 @@
             // 
             // btnMoveLayerDown
             // 
+            this.btnMoveLayerDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMoveLayerDown.Location = new System.Drawing.Point(145, 286);
             this.btnMoveLayerDown.Name = "btnMoveLayerDown";
             this.btnMoveLayerDown.Size = new System.Drawing.Size(42, 30);
@@ -86,6 +93,7 @@
             // 
             // btnDeleteLayer
             // 
+            this.btnDeleteLayer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeleteLayer.Location = new System.Drawing.Point(193, 286);
             this.btnDeleteLayer.Name = "btnDeleteLayer";
             this.btnDeleteLayer.Size = new System.Drawing.Size(42, 30);
@@ -96,6 +104,7 @@
             // 
             // btnDuplicateLayer
             // 
+            this.btnDuplicateLayer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDuplicateLayer.Location = new System.Drawing.Point(241, 286);
             this.btnDuplicateLayer.Name = "btnDuplicateLayer";
             this.btnDuplicateLayer.Size = new System.Drawing.Size(42, 30);
@@ -107,6 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(288, 322);
             this.Controls.Add(this.btnDuplicateLayer);
             this.Controls.Add(this.btnDeleteLayer);
             this.Controls.Add(this.btnMoveLayerDown);
@@ -114,8 +124,8 @@
             this.Controls.Add(this.btnEditLayer);
             this.Controls.Add(this.btnAddLayer);
             this.Controls.Add(this.trvLayers);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "MapLayersViewer";
-            this.Size = new System.Drawing.Size(287, 319);
             this.ResumeLayout(false);
 
         }

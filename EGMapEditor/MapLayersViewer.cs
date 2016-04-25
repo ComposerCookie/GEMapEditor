@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
+
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DockPanel;
 
 namespace EGMapEditor
 {
-    public partial class MapLayersViewer : UserControl
+    public partial class MapLayersViewer : DockContent
     {
         private Map viewingMap { get; set; }
 
@@ -40,12 +36,14 @@ namespace EGMapEditor
                 trvLayers.Nodes.Add(s);
             }
 
+            trvLayers.SelectedNode = trvLayers.Nodes[trvLayers.Nodes.Count - 1 - MapEditor.Instance.CurrentFocusedMap.CurrentEditLayer];
+
             viewingMap = m;
         }
 
         public int GetSelectedLayerIndex()
         {
-            if (trvLayers.SelectedNode != null && trvLayers.SelectedNode.Index < trvLayers.Nodes.Count - 1 && viewingMap.tiles.Count > 0) { 
+            if (viewingMap != null && trvLayers.SelectedNode != null && trvLayers.SelectedNode.Index < trvLayers.Nodes.Count - 1 && viewingMap.tiles.Count > 0) { 
                 return trvLayers.SelectedNode.Index;
             }
             return -1;
@@ -53,13 +51,15 @@ namespace EGMapEditor
 
         private void btnAddLayer_Click(object sender, EventArgs e)
         {
-            viewingMap.AddLayer();
-            trvLayers.Nodes.Insert(0, viewingMap.layerNames[viewingMap.layerNames.Count]);
+            if (viewingMap == null)
+                return;
+            viewingMap.AddLayer("Layer " + trvLayers.Nodes.Count);
+            trvLayers.Nodes.Insert(0, viewingMap.layerNames[viewingMap.layerNames.Count - 1]);
         }
 
         private void btnMoveLayerUp_Click(object sender, EventArgs e)
         {
-            if (trvLayers.SelectedNode != null && trvLayers.SelectedNode.Index > 0 && viewingMap.tiles.Count > 1)
+            if (viewingMap != null && trvLayers.SelectedNode != null && trvLayers.SelectedNode.Index > 0 && viewingMap.tiles.Count > 1)
             {
                 Tile[] temp = viewingMap.tiles[viewingMap.tiles.Count - trvLayers.SelectedNode.Index];
                 viewingMap.tiles[viewingMap.tiles.Count - trvLayers.SelectedNode.Index] = viewingMap.tiles[viewingMap.tiles.Count - trvLayers.SelectedNode.Index + 1];
@@ -78,7 +78,7 @@ namespace EGMapEditor
 
         private void btnMoveLayerDown_Click(object sender, EventArgs e)
         {
-            if (trvLayers.SelectedNode != null && trvLayers.SelectedNode.Index < trvLayers.Nodes.Count - 1 && viewingMap.tiles.Count > 1)
+            if (viewingMap != null && trvLayers.SelectedNode != null && trvLayers.SelectedNode.Index < trvLayers.Nodes.Count - 1 && viewingMap.tiles.Count > 1)
             {
                 Tile[] temp = viewingMap.tiles[viewingMap.tiles.Count - trvLayers.SelectedNode.Index];
                 viewingMap.tiles[viewingMap.tiles.Count - trvLayers.SelectedNode.Index] = viewingMap.tiles[viewingMap.tiles.Count - trvLayers.SelectedNode.Index - 1];
@@ -96,7 +96,7 @@ namespace EGMapEditor
 
         private void btnDeleteLayer_Click(object sender, EventArgs e)
         {
-            if (trvLayers.SelectedNode != null && trvLayers.SelectedNode.Index < trvLayers.Nodes.Count - 1 && viewingMap.tiles.Count > 0)
+            if (viewingMap != null && trvLayers.SelectedNode != null && trvLayers.SelectedNode.Index < trvLayers.Nodes.Count - 1 && viewingMap.tiles.Count > 0)
             {
                 viewingMap.tiles.RemoveAt(viewingMap.tiles.Count - trvLayers.SelectedNode.Index);
                 viewingMap.layerNames.RemoveAt(viewingMap.tiles.Count - trvLayers.SelectedNode.Index);
@@ -106,9 +106,9 @@ namespace EGMapEditor
 
         private void trvLayers_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (trvLayers.SelectedNode != null && trvLayers.SelectedNode.Index < trvLayers.Nodes.Count - 1 && viewingMap.tiles.Count > 0)
+            if (viewingMap != null && trvLayers.SelectedNode != null && trvLayers.SelectedNode.Index < trvLayers.Nodes.Count && viewingMap.tiles.Count > 0)
             {
-
+                MapEditor.Instance.CurrentFocusedMap.CurrentEditLayer = trvLayers.Nodes.Count - 1 - trvLayers.SelectedNode.Index;
             }
         }
     }

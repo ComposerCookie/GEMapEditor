@@ -20,6 +20,9 @@ namespace EGMapEditor
                 OutlineColor = SFML.Graphics.Color.Red,
                 OutlineThickness = 2
             };
+
+            GetMaxRow = 0;
+            GetMaxTilePerRow = 0;
         }
 
         public void UpdateTilesetDisplay()
@@ -79,13 +82,15 @@ namespace EGMapEditor
 
         //Font DEBUGGINGFONT = new SFML.Graphics.Font("arial.ttf");
 
-        private int GetMaxTilePerRow => (int)tempSprite.Texture.Size.X / MapEditor.Instance.TILE_WIDTH;
+        private int GetMaxTilePerRow;
 
-        private int GetMaxRow => (int)tempSprite.Texture.Size.Y / MapEditor.Instance.TILE_HEIGHT;
+        private int GetMaxRow;
 
         public void changeTileset(int t)
         {
             tempSprite = new Sprite(MapEditor.Instance.Tilesets[t]) { Position = new SFML.System.Vector2f(0, 0) };
+            GetMaxTilePerRow = (int)tempSprite.Texture.Size.X / MapEditor.Instance.TILE_WIDTH;
+            GetMaxRow = (int)tempSprite.Texture.Size.Y / MapEditor.Instance.TILE_HEIGHT;
 
             lines.Clear();
 

@@ -39,6 +39,12 @@ namespace EGMapEditor
             layerNames.Add("Unnamed Layer");
         }
 
+        public void AddLayer(string name)
+        {
+            AddLayer();
+            layerNames[layerNames.Count - 1] = name;
+        }
+
         public void RemoveLayer(int index)
         {
             tiles.RemoveAt(index);

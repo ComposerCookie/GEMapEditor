@@ -33,6 +33,7 @@ namespace EGMapEditor
 
         private TilesetController tilesetController;
         private ProjectExplorer projectExplorer;
+        private MapLayersViewer mapLayerViewer;
 
         private string TilesetPath() { return "/Tileset/"; }
         public List<Texture> Tilesets { get; set; }
@@ -46,14 +47,28 @@ namespace EGMapEditor
 
         public List<Map> ServerLoadedMaps { get; set; }
         public List<Map> LocalLoadedMaps { get; set; }
-        public List<Map> SessionMaps { get; set; } 
+        public List<Map> SessionMaps { get; set; }
 
-        public MapController CurrentFocusedMap { get; set; }
+        private MapController focusedMap;
+        public MapController CurrentFocusedMap
+        {
+            get
+            {
+                return focusedMap;
+            }
+            set
+            {
+                focusedMap = value;
+                mapLayerViewer.ChangeMapData(focusedMap.map);
+            }
+        }
 
         public MapEditor()
         {
             _instance = this;
             InitializeComponent();
+
+            SessionMaps = new List<Map>();
 
             tilesetController = new TilesetController
             {
@@ -68,6 +83,13 @@ namespace EGMapEditor
                 Size = new System.Drawing.Size(500, 500)
             };
             projectExplorer.Show(dockSecondary, DockState.DockTop);
+
+            mapLayerViewer = new MapLayersViewer
+            {
+                Name = "mapLayersViewer",
+                Size = new System.Drawing.Size(500, 500)
+            };
+            mapLayerViewer.Show(dockSecondary, DockState.Document);
 
             Tilesets = new List<Texture>();
             TilesetString = new List<string>();
@@ -148,7 +170,9 @@ namespace EGMapEditor
 
         private void menuAddMap_Click(object sender, EventArgs e)
         {
-            OpenMap(new Map());
+            SessionMaps.Add(new Map());
+            OpenMap(SessionMaps[SessionMaps.Count - 1]);
+            mapLayerViewer.ChangeMapData(SessionMaps[SessionMaps.Count - 1]);
         }
 
         private void MapEditor_Resize(object sender, EventArgs e)
