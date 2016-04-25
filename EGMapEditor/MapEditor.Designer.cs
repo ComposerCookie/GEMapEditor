@@ -65,7 +65,8 @@
             this.windowToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1159, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1545, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -79,7 +80,7 @@
             this.pushToolStripMenuItem,
             this.refreshToolStripMenuItem});
             this.stuffToolStripMenuItem.Name = "stuffToolStripMenuItem";
-            this.stuffToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.stuffToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.stuffToolStripMenuItem.Text = "File";
             // 
             // addToolStripMenuItem
@@ -88,50 +89,50 @@
             this.menuAddTileset,
             this.menuAddMap});
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
             this.addToolStripMenuItem.Text = "Add";
             // 
             // menuAddTileset
             // 
             this.menuAddTileset.Name = "menuAddTileset";
-            this.menuAddTileset.Size = new System.Drawing.Size(152, 22);
+            this.menuAddTileset.Size = new System.Drawing.Size(127, 26);
             this.menuAddTileset.Text = "Tileset";
             this.menuAddTileset.Click += new System.EventHandler(this.menuAddTileset_Click);
             // 
             // menuAddMap
             // 
             this.menuAddMap.Name = "menuAddMap";
-            this.menuAddMap.Size = new System.Drawing.Size(152, 22);
+            this.menuAddMap.Size = new System.Drawing.Size(127, 26);
             this.menuAddMap.Text = "Map";
             this.menuAddMap.Click += new System.EventHandler(this.menuAddMap_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(135, 6);
             // 
             // connectToolStripMenuItem
             // 
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
             this.connectToolStripMenuItem.Text = "Connect";
             // 
             // pushToolStripMenuItem
             // 
             this.pushToolStripMenuItem.Name = "pushToolStripMenuItem";
-            this.pushToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pushToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
             this.pushToolStripMenuItem.Text = "Push";
             // 
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
             this.refreshToolStripMenuItem.Text = "Refresh";
             // 
             // editToolStripMenuItem
@@ -140,27 +141,27 @@
             this.menuUndoMap,
             this.menuRedoMap});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // menuUndoMap
             // 
             this.menuUndoMap.Name = "menuUndoMap";
-            this.menuUndoMap.Size = new System.Drawing.Size(152, 22);
+            this.menuUndoMap.Size = new System.Drawing.Size(120, 26);
             this.menuUndoMap.Text = "Undo";
             this.menuUndoMap.Click += new System.EventHandler(this.menuUndoMap_Click);
             // 
             // menuRedoMap
             // 
             this.menuRedoMap.Name = "menuRedoMap";
-            this.menuRedoMap.Size = new System.Drawing.Size(152, 22);
+            this.menuRedoMap.Size = new System.Drawing.Size(120, 26);
             this.menuRedoMap.Text = "Redo";
             this.menuRedoMap.Click += new System.EventHandler(this.menuRedoMap_Click);
             // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // windowToolStripMenuItem
@@ -169,26 +170,26 @@
             this.explorerToolStripMenuItem,
             this.tilesetControllerToolStripMenuItem});
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
-            this.windowToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.windowToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.windowToolStripMenuItem.Text = "Window";
             // 
             // explorerToolStripMenuItem
             // 
             this.explorerToolStripMenuItem.Name = "explorerToolStripMenuItem";
-            this.explorerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.explorerToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.explorerToolStripMenuItem.Text = "Explorer";
             // 
             // tilesetControllerToolStripMenuItem
             // 
             this.tilesetControllerToolStripMenuItem.Name = "tilesetControllerToolStripMenuItem";
-            this.tilesetControllerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.tilesetControllerToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.tilesetControllerToolStripMenuItem.Text = "Tileset Controller";
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -200,14 +201,16 @@
             this.splitContainer1.Panel2.Controls.Add(this.dockSecondary);
             this.splitContainer1.Size = new System.Drawing.Size(1545, 789);
             this.splitContainer1.SplitterDistance = 1121;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 13;
             // 
             // dockPrimary
             // 
             this.dockPrimary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockPrimary.DockBackColor = System.Drawing.SystemColors.Control;
             this.dockPrimary.DocumentStyle = System.Windows.Forms.DockPanel.DocumentStyle.DockingWindow;
             this.dockPrimary.Location = new System.Drawing.Point(0, 0);
-            this.dockPrimary.Margin = new System.Windows.Forms.Padding(2);
+            this.dockPrimary.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dockPrimary.Name = "dockPrimary";
             this.dockPrimary.Size = new System.Drawing.Size(1121, 789);
             this.dockPrimary.TabIndex = 0;
@@ -217,20 +220,21 @@
             this.dockSecondary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dockSecondary.DocumentStyle = System.Windows.Forms.DockPanel.DocumentStyle.DockingWindow;
             this.dockSecondary.Location = new System.Drawing.Point(0, 0);
-            this.dockSecondary.Margin = new System.Windows.Forms.Padding(2);
+            this.dockSecondary.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dockSecondary.Name = "dockSecondary";
-            this.dockSecondary.Size = new System.Drawing.Size(420, 789);
+            this.dockSecondary.Size = new System.Drawing.Size(419, 789);
             this.dockSecondary.TabIndex = 2;
             // 
             // MapEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1159, 664);
+            this.ClientSize = new System.Drawing.Size(1545, 817);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MapEditor";

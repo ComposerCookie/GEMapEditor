@@ -32,6 +32,10 @@ namespace EGMapEditor
         public void AddLayer()
         {
             tiles.Add(new Tile[Width * Height]);
+            for (var i = 0; i < Width * Height - 1; i++ )
+            {
+                tiles[tiles.Count - 1][i].id = -1;
+            }
             layerNames.Add("Unnamed Layer");
         }
 
