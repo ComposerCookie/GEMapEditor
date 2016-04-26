@@ -182,7 +182,9 @@ namespace EGMapEditor
                 tempSprite.TextureRect = new IntRect(st.id % (int)(tempSprite.Texture.Size.X / tempx) * tempx,
                     st.id / (int)(tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy);
 
-                tempSprite.Color = new Color(0, 0, 0, 122);
+
+                var c = tempSprite.Color;
+                tempSprite.Color = new Color(c.R, c.G, c.B, 128);
                 mapViewer.Draw(tempSprite);
             }
         }
