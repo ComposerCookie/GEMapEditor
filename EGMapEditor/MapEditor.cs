@@ -68,27 +68,16 @@ namespace EGMapEditor
             InitializeComponent();
 
             SessionMaps = new List<Map>();
+            
+            _tilesetController = new TilesetController { Name = "_tilesetController" };
+            _tilesetController.Show(dockPanel, DockState.DockRight);
 
-            _tilesetController = new TilesetController
-            {
-                Name = "_tilesetController",
-                Size = new System.Drawing.Size(500, 500)
-            };
-            _tilesetController.Show(dockSecondary, DockState.Document);
+            var projectExplorer = new ProjectExplorer { Name = "projectExplorer" };
+            projectExplorer.Show(dockPanel, DockState.DockRight);
+            projectExplorer.DockTo(_tilesetController.Pane, DockStyle.Top, 1);
 
-            var projectExplorer = new ProjectExplorer
-            {
-                Name = "projectExplorer",
-                Size = new System.Drawing.Size(500, 500)
-            };
-            projectExplorer.Show(dockSecondary, DockState.DockTop);
-
-            _mapLayerViewer = new MapLayersViewer
-            {
-                Name = "mapLayersViewer",
-                Size = new System.Drawing.Size(500, 500)
-            };
-            _mapLayerViewer.Show(dockSecondary, DockState.Document);
+            _mapLayerViewer = new MapLayersViewer { Name = "mapLayersViewer" };
+            _mapLayerViewer.Show(dockPanel, DockState.DockRightAutoHide);
 
             Tilesets = new List<Texture>();
             TilesetString = new List<string>();
@@ -99,11 +88,8 @@ namespace EGMapEditor
 
         public void OpenMap(Map m)
         {
-            MapController mc = new MapController(m)
-            {
-                Dock = DockStyle.Fill
-            };
-            mc.Show(dockPrimary, DockState.Document);
+            MapController mc = new MapController(m);
+            mc.Show(dockPanel, DockState.Document);
         }
 
         private void MapEditor_Shown(object sender, EventArgs e)
@@ -116,7 +102,7 @@ namespace EGMapEditor
         private void LoadTilesets()
         {
             var tPath = TilesetPath();
-            if (Directory.Exists(Application.StartupPath +  tPath))
+            if (Directory.Exists(Application.StartupPath + tPath))
             {
                 string[] tempArray = Directory.GetFiles(Application.StartupPath + tPath, "*.png");
                 foreach (string s in tempArray)
@@ -154,7 +140,7 @@ namespace EGMapEditor
                         Tilesets.Add(new Texture(dialog.FileNames[i]));
                         TilesetString.Add(dialog.SafeFileNames[i]);
                     }
-                    
+
                     CurrentTileset = Tilesets.Count - 1;
                     _tilesetController.UpdateTilesetDisplay();
 
@@ -171,8 +157,7 @@ namespace EGMapEditor
 
         private void MapEditor_Resize(object sender, EventArgs e)
         {
-            dockPrimary.Height = Size.Height - 20;
-            dockSecondary.Height = Size.Height - 20;
+            dockPanel.Height = Size.Height - 20;
         }
 
         private void menuUndoMap_Click(object sender, EventArgs e)
