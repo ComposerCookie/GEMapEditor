@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace EGMapEditor
 {
-    class PointTool : Tools
+    class PointTool : ITools
     {
         public ToolType ToolType { get; set; }
         public int Size { get; set; }

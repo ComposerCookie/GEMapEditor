@@ -4,51 +4,51 @@ namespace EGMapEditor
 {
     public struct Tile
     {
-        public int id;
-        public int tileset;
+        public int Id;
+        public int Tileset;
 
-        public Tile(int _id, int ts)
+        public Tile(int id, int ts)
         {
-            id = _id;
-            tileset = ts;
+            Id = id;
+            Tileset = ts;
         }
     }
 
     public class Map
     {
         public string Name { get; set; }
-        public int Width { get { return 80; } }
-        public int Height { get { return 40; } }
-        public List<Tile[]> tiles { get; set; }
-        public List<string> layerNames { get; set; }
+        public int Width => 80;
+        public int Height => 40;
+        public List<Tile[]> Tiles { get; set; }
+        public List<string> LayerNames { get; set; }
 
         public Map()
         {
-            tiles = new List<Tile[]>();
-            layerNames = new List<string>();
+            Tiles = new List<Tile[]>();
+            LayerNames = new List<string>();
             AddLayer();
         }
 
         public void AddLayer()
         {
-            tiles.Add(new Tile[Width * Height]);
+            Tiles.Add(new Tile[Width * Height]);
             for (var i = 0; i < Width * Height - 1; i++ )
             {
-                tiles[tiles.Count - 1][i].id = -1;
+                Tiles[Tiles.Count - 1][i].Id = -1;
             }
-            layerNames.Add("Unnamed Layer");
+            LayerNames.Add("Unnamed Layer");
         }
 
         public void AddLayer(string name)
         {
             AddLayer();
-            layerNames[layerNames.Count - 1] = name;
+            LayerNames[LayerNames.Count - 1] = name;
         }
 
         public void RemoveLayer(int index)
         {
-            tiles.RemoveAt(index);
-            layerNames.RemoveAt(index);
+            Tiles.RemoveAt(index);
+            LayerNames.RemoveAt(index);
         }
 }
 }

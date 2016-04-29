@@ -49,7 +49,7 @@ namespace EGMapEditor
         {
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
 
-            if (this.DialogResult == DialogResult.Cancel)
+            if (DialogResult == DialogResult.Cancel)
             {
                 MapEditor.Instance.Close();
             }

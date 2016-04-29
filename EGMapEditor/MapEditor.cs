@@ -9,31 +9,30 @@ namespace EGMapEditor
 {
     public struct SelectedTileArea
     {
-        public int offsetX;
-        public int offsetY;
-        public int id;
-        public int tileset;
+        public int OffsetX;
+        public int OffsetY;
+        public int Id;
+        public int Tileset;
 
-        public SelectedTileArea(int oX, int oY, int _id, int ts)
+        public SelectedTileArea(int oX, int oY, int id, int ts)
         {
-            offsetX = oX;
-            offsetY = oY;
-            id = _id;
-            tileset = ts;
+            OffsetX = oX;
+            OffsetY = oY;
+            Id = id;
+            Tileset = ts;
         }
     }
 
     public partial class MapEditor : Form
     {
-        static private MapEditor _instance;
-        public static MapEditor Instance { get { return _instance; } }
+        private static MapEditor _instance;
+        public static MapEditor Instance => _instance;
 
-        public int TILE_WIDTH { get { return 16; } }
-        public int TILE_HEIGHT { get { return 16; } }
+        public int TILE_WIDTH => 16;
+        public int TILE_HEIGHT => 16;
 
-        private TilesetController tilesetController;
-        private ProjectExplorer projectExplorer;
-        private MapLayersViewer mapLayerViewer;
+        private readonly TilesetController _tilesetController;
+        private readonly MapLayersViewer _mapLayerViewer;
 
         private string TilesetPath() { return "/Tileset/"; }
         public List<Texture> Tilesets { get; set; }
@@ -49,17 +48,17 @@ namespace EGMapEditor
         public List<Map> LocalLoadedMaps { get; set; }
         public List<Map> SessionMaps { get; set; }
 
-        private MapController focusedMap;
+        private MapController _focusedMap;
         public MapController CurrentFocusedMap
         {
             get
             {
-                return focusedMap;
+                return _focusedMap;
             }
             set
             {
-                focusedMap = value;
-                mapLayerViewer.ChangeMapData(focusedMap.map);
+                _focusedMap = value;
+                _mapLayerViewer.ChangeMapData(_focusedMap.Map);
             }
         }
 
@@ -70,26 +69,26 @@ namespace EGMapEditor
 
             SessionMaps = new List<Map>();
 
-            tilesetController = new TilesetController
+            _tilesetController = new TilesetController
             {
-                Name = "tilesetController",
+                Name = "_tilesetController",
                 Size = new System.Drawing.Size(500, 500)
             };
-            tilesetController.Show(dockSecondary, DockState.Document);
+            _tilesetController.Show(dockSecondary, DockState.Document);
 
-            projectExplorer = new ProjectExplorer
+            var projectExplorer = new ProjectExplorer
             {
                 Name = "projectExplorer",
                 Size = new System.Drawing.Size(500, 500)
             };
             projectExplorer.Show(dockSecondary, DockState.DockTop);
 
-            mapLayerViewer = new MapLayersViewer
+            _mapLayerViewer = new MapLayersViewer
             {
                 Name = "mapLayersViewer",
                 Size = new System.Drawing.Size(500, 500)
             };
-            mapLayerViewer.Show(dockSecondary, DockState.Document);
+            _mapLayerViewer.Show(dockSecondary, DockState.Document);
 
             Tilesets = new List<Texture>();
             TilesetString = new List<string>();
@@ -107,15 +106,10 @@ namespace EGMapEditor
             mc.Show(dockPrimary, DockState.Document);
         }
 
-        private void chkGrid_CheckedChanged(object sender, EventArgs e)
-        {
-            //MapEditor.Instance.DrawGridOnMaps = chkGrid.Checked;
-        }
-
         private void MapEditor_Shown(object sender, EventArgs e)
         {
-            this.Hide();
-            StartForm startForm = new StartForm();
+            Hide();
+            var startForm = new StartForm();
             startForm.ShowDialog();
         }
 
@@ -134,7 +128,7 @@ namespace EGMapEditor
                 if (Tilesets.Count > 0)
                 {
                     CurrentTileset = 0;
-                    tilesetController.UpdateTilesetDisplay();
+                    _tilesetController.UpdateTilesetDisplay();
                 }
             }
             else
@@ -162,7 +156,7 @@ namespace EGMapEditor
                     }
                     
                     CurrentTileset = Tilesets.Count - 1;
-                    tilesetController.UpdateTilesetDisplay();
+                    _tilesetController.UpdateTilesetDisplay();
 
                 }
             }
@@ -172,7 +166,7 @@ namespace EGMapEditor
         {
             SessionMaps.Add(new Map());
             OpenMap(SessionMaps[SessionMaps.Count - 1]);
-            mapLayerViewer.ChangeMapData(SessionMaps[SessionMaps.Count - 1]);
+            _mapLayerViewer.ChangeMapData(SessionMaps[SessionMaps.Count - 1]);
         }
 
         private void MapEditor_Resize(object sender, EventArgs e)
@@ -183,14 +177,12 @@ namespace EGMapEditor
 
         private void menuUndoMap_Click(object sender, EventArgs e)
         {
-            if (CurrentFocusedMap != null)
-                CurrentFocusedMap.Undo();
+            CurrentFocusedMap?.Undo();
         }
 
         private void menuRedoMap_Click(object sender, EventArgs e)
         {
-            if (CurrentFocusedMap != null)
-                CurrentFocusedMap.Redo();
+            CurrentFocusedMap?.Redo();
         }
     }
 }
