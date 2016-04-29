@@ -6,17 +6,17 @@ namespace EGMapEditor
 {
     public partial class ProjectExplorer : DockContent
     {
-        private List<TreeNode> networkMaps;
-        private List<TreeNode> localMaps;
-        private List<TreeNode> sessionMaps;
+        private readonly List<TreeNode> _networkMaps;
+        private readonly List<TreeNode> _localMaps;
+        private readonly List<TreeNode> _sessionMaps;
 
 
         public ProjectExplorer()
         {
             InitializeComponent();
-            networkMaps = new List<TreeNode>();
-            localMaps = new List<TreeNode>();
-            sessionMaps = new List<TreeNode>();
+            _networkMaps = new List<TreeNode>();
+            _localMaps = new List<TreeNode>();
+            _sessionMaps = new List<TreeNode>();
         }
 
         public void LoadExplorer()
@@ -32,19 +32,19 @@ namespace EGMapEditor
 
         public void LoadNetworkMaps()
         {
-            networkMaps.Clear();
+            _networkMaps.Clear();
 
-            trvExplorer.Nodes[0].Nodes.AddRange(networkMaps.ToArray());
+            trvExplorer.Nodes[0].Nodes.AddRange(_networkMaps.ToArray());
         }
 
         public void LoadLocalMaps()
         {
-            localMaps.Clear();
+            _localMaps.Clear();
         }
 
         public void LoadSessionMaps()
         {
-            sessionMaps.Clear();
+            _sessionMaps.Clear();
         }
     }
 }

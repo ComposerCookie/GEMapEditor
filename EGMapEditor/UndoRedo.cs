@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EGMapEditor
 {
     class UndoRedo<T>
     {
-        private Stack<T> UndoStack;
-        private Stack<T> RedoStack;
+        private Stack<T> _undoStack;
+        private Stack<T> _redoStack;
 
 
         public T CurrentItem;
@@ -22,41 +20,41 @@ namespace EGMapEditor
 
         public void New()
         {
-            UndoStack = new Stack<T>();
-            RedoStack = new Stack<T>();
+            _undoStack = new Stack<T>();
+            _redoStack = new Stack<T>();
         }
 
 
         public void Clear()
         {
-            UndoStack.Clear();
-            RedoStack.Clear();
+            _undoStack.Clear();
+            _redoStack.Clear();
             CurrentItem = default(T);
         }
 
         public void AddItem(T item)
         {
             CurrentItem = item;
-            UndoStack.Push(CurrentItem);
-            RedoStack.Clear();
+            _undoStack.Push(CurrentItem);
+            _redoStack.Clear();
         }
 
         public void AddToUndo(T item)
         {
-            UndoStack.Push(item);
+            _undoStack.Push(item);
         }
 
         public void AddToRedo(T item)
         {
-            RedoStack.Push(item);
+            _redoStack.Push(item);
         }
 
         public void Undo() {
             if (!CanUndo())
                 return;
 
-            CurrentItem = UndoStack.Pop();
-            UndoHappened(this, new UndoRedoEventArgs(CurrentItem));
+            CurrentItem = _undoStack.Pop();
+            UndoHappened?.Invoke(this, new UndoRedoEventArgs(CurrentItem));
         }
 
 
@@ -64,29 +62,29 @@ namespace EGMapEditor
             if (!CanRedo())
                 return;
 
-            CurrentItem = RedoStack.Pop();
-            RedoHappened(this, new UndoRedoEventArgs(CurrentItem));
+            CurrentItem = _redoStack.Pop();
+            RedoHappened?.Invoke(this, new UndoRedoEventArgs(CurrentItem));
         }
 
 
         public bool CanUndo()
         {
-            return UndoStack.Count > 0;
+            return _undoStack.Count > 0;
         }
 
         public bool CanRedo()
         {
-            return RedoStack.Count > 0;
+            return _redoStack.Count > 0;
         }
 
         public List<T> UndoItems()
         {
-            return UndoStack.ToList();
+            return _undoStack.ToList();
         }
 
         public List<T> RedoItems()
         {
-            return RedoStack.ToList();
+            return _redoStack.ToList();
         }
     }
 }

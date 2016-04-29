@@ -81,7 +81,7 @@
     <Compile Include="MapPropertiesViewer.Designer.cs">
       <DependentUpon>MapPropertiesViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="SizableTool.cs" />
+    <Compile Include="ISizableTool.cs" />
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,7 +108,7 @@
     <Compile Include="ToolPropertiesViewer.Designer.cs">
       <DependentUpon>ToolPropertiesViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools.cs" />
+    <Compile Include="ITools.cs" />
     <Compile Include="ToolType.cs" />
     <Compile Include="UndoRedo.cs" />
     <Compile Include="UndoRedoEventArgs.cs" />
@@ -138,6 +138,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="DockContent\TilesetController.resx">
       <DependentUpon>TilesetController.cs</DependentUpon>

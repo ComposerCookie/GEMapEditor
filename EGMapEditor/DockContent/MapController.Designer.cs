@@ -41,7 +41,7 @@
             this.vScrTileset.Name = "vScrTileset";
             this.vScrTileset.Size = new System.Drawing.Size(22, 516);
             this.vScrTileset.TabIndex = 4;
-            this.vScrTileset.Scroll += new System.Windows.Forms.ScrollEventHandler(this.moveCamera);
+            this.vScrTileset.Scroll += new System.Windows.Forms.ScrollEventHandler(this.MoveCamera);
             // 
             // hScrTileset
             // 
@@ -51,7 +51,7 @@
             this.hScrTileset.Name = "hScrTileset";
             this.hScrTileset.Size = new System.Drawing.Size(659, 22);
             this.hScrTileset.TabIndex = 3;
-            this.hScrTileset.Scroll += new System.Windows.Forms.ScrollEventHandler(this.moveCamera);
+            this.hScrTileset.Scroll += new System.Windows.Forms.ScrollEventHandler(this.MoveCamera);
             // 
             // mapViewer
             // 

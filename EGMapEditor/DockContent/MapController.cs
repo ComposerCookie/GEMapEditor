@@ -15,7 +15,7 @@ namespace EGMapEditor
         public int Y;
         public int Layer;
         public int Tileset;
-        public int ID;
+        public int Id;
 
         public PlacedTile(int x, int y, int l, int t, int id)
         {
@@ -23,15 +23,15 @@ namespace EGMapEditor
             Y = y;
             Layer = l;
             Tileset = t;
-            ID = id;
+            Id = id;
         }
     }
 
     public partial class MapController : DockContent
     {
-        private UndoRedo<List<PlacedTile>> UndoRedoStack;
-        private List<PlacedTile> placedTile;
-        private List<int> UndoPreventAddCache;
+        private readonly UndoRedo<List<PlacedTile>> _undoRedoStack;
+        private readonly List<PlacedTile> _placedTile;
+        private readonly List<int> _undoPreventAddCache;
 
         public MapController(Map m)
         {
@@ -40,74 +40,74 @@ namespace EGMapEditor
             hScrTileset.Maximum = m.Width * MapEditor.Instance.TILE_WIDTH;
 
             // MapViewer Initializers
-            tempSprite = new Sprite();
-            lines = new List<Vertex[]>();
-            UndoRedoStack = new UndoRedo<List<PlacedTile>>();
-            UndoRedoStack.New();
-            UndoPreventAddCache = new List<int>();
-            pressedDown = false;
+            _tempSprite = new Sprite();
+            _lines = new List<Vertex[]>();
+            _undoRedoStack = new UndoRedo<List<PlacedTile>>();
+            _undoRedoStack.New();
+            _undoPreventAddCache = new List<int>();
+            _pressedDown = false;
 
-            map = m;
+            Map = m;
 
-            lastDownTileX = -1;
-            lastDownTileY = -1;
+            _lastDownTileX = -1;
+            _lastDownTileY = -1;
 
-            placedTile = new List<PlacedTile>();
+            _placedTile = new List<PlacedTile>();
 
             int tempx = MapEditor.Instance.TILE_WIDTH;
             int tempy = MapEditor.Instance.TILE_HEIGHT;
 
             for (int i = 0; i < m.Width; i++)
-                lines.Add(new Vertex[] { new Vertex(new Vector2f(i * tempx, 0)), new Vertex(new Vector2f(i * tempx, map.Height * tempy)) });
+                _lines.Add(new[] { new Vertex(new Vector2f(i * tempx, 0)), new Vertex(new Vector2f(i * tempx, Map.Height * tempy)) });
             for (int i = 0; i < m.Height; i++)
-                lines.Add(new Vertex[] { new Vertex(new Vector2f(0, i * tempy)), new Vertex(new Vector2f(map.Width * tempx, i * tempy)) });
+                _lines.Add(new[] { new Vertex(new Vector2f(0, i * tempy)), new Vertex(new Vector2f(Map.Width * tempx, i * tempy)) });
 
-            UndoRedoStack.UndoHappened += UndoRedoStack_UndoHappened;
-            UndoRedoStack.RedoHappened += UndoRedoStack_RedoHappened;
+            _undoRedoStack.UndoHappened += UndoRedoStack_UndoHappened;
+            _undoRedoStack.RedoHappened += UndoRedoStack_RedoHappened;
         }
 
         #region SFML Control
-        public Map map { get; set; }
-        private Sprite tempSprite;
-        private List<Vertex[]> lines;
-        private bool pressedDown;
+        public Map Map { get; set; }
+        private Sprite _tempSprite;
+        private readonly List<Vertex[]> _lines;
+        private bool _pressedDown;
 
-        private int offsetX = 0;
-        private int offsetY = 0;
+        private int _offsetX;
+        private int _offsetY;
 
-        private int lastDownTileX;
-        private int lastDownTileY;
+        private int _lastDownTileX;
+        private int _lastDownTileY;
 
         public int CurrentEditLayer { get; set; }
 
-        public void moveCamera(object sender, ScrollEventArgs e)
+        public void MoveCamera(object sender, ScrollEventArgs e)
         {
             var offX = hScrTileset.Value;
             var offY = vScrTileset.Value;
-            offsetX = offX;
-            offsetY = offY;
+            _offsetX = offX;
+            _offsetY = offY;
             mapViewer.View.Center = new Vector2f(offX + Size.Width / 2, offY + Size.Height / 2);
         }
 
         public void Undo()
         {
-            UndoRedoStack.Undo();
+            _undoRedoStack.Undo();
         }
 
         public void Redo()
         {
-            UndoRedoStack.Redo();
+            _undoRedoStack.Redo();
         }
 
-        private void placeTile(int mouseX, int mouseY)
+        private void PlaceTile(int mouseX, int mouseY)
         {
             int tempx = MapEditor.Instance.TILE_WIDTH;
             int tempy = MapEditor.Instance.TILE_HEIGHT;
 
-            int clickedY = (mouseY + offsetY) / tempy * map.Width;
-            int clickedX = (mouseX + offsetX) / tempx;
+            int clickedY = (mouseY + _offsetY) / tempy * Map.Width;
+            int clickedX = (mouseX + _offsetX) / tempx;
 
-            if (clickedX == lastDownTileX && clickedY == lastDownTileY)
+            if (clickedX == _lastDownTileX && clickedY == _lastDownTileY)
                 return;
 
             if (MapEditor.Instance.SelectingArea == null)
@@ -115,21 +115,21 @@ namespace EGMapEditor
 
             foreach (SelectedTileArea st in MapEditor.Instance.SelectingArea)
             {
-                if (clickedY + clickedX + st.offsetY * map.Width + st.offsetX < map.tiles[CurrentEditLayer].Length)
+                if (clickedY + clickedX + st.OffsetY * Map.Width + st.OffsetX < Map.Tiles[CurrentEditLayer].Length)
                 {
-                    int actualLoc = clickedY + st.offsetY * map.Width + clickedX + st.offsetX;
-                    if (!UndoPreventAddCache.Contains(actualLoc))
+                    int actualLoc = clickedY + st.OffsetY * Map.Width + clickedX + st.OffsetX;
+                    if (!_undoPreventAddCache.Contains(actualLoc))
                     {
-                        placedTile.Add(new PlacedTile(clickedX + st.offsetX, clickedY + st.offsetY * map.Width, CurrentEditLayer, map.tiles[CurrentEditLayer][actualLoc].tileset, map.tiles[CurrentEditLayer][actualLoc].id));
-                        UndoPreventAddCache.Add(actualLoc);
+                        _placedTile.Add(new PlacedTile(clickedX + st.OffsetX, clickedY + st.OffsetY * Map.Width, CurrentEditLayer, Map.Tiles[CurrentEditLayer][actualLoc].Tileset, Map.Tiles[CurrentEditLayer][actualLoc].Id));
+                        _undoPreventAddCache.Add(actualLoc);
                     }
-                    map.tiles[CurrentEditLayer][actualLoc].id = st.id;
-                    map.tiles[CurrentEditLayer][actualLoc].tileset = st.tileset;
+                    Map.Tiles[CurrentEditLayer][actualLoc].Id = st.Id;
+                    Map.Tiles[CurrentEditLayer][actualLoc].Tileset = st.Tileset;
                 }
             }
 
-            lastDownTileX = clickedX;
-            lastDownTileY = clickedY;
+            _lastDownTileX = clickedX;
+            _lastDownTileY = clickedY;
         }
 
         #region Events
@@ -149,78 +149,82 @@ namespace EGMapEditor
             int tempx = MapEditor.Instance.TILE_WIDTH;
             int tempy = MapEditor.Instance.TILE_HEIGHT;
 
-            for (int l = 0; l < map.tiles.Count; l++)
+            for (var l = 0; l < Map.Tiles.Count; l++)
             {
-                for (int y = 0; y < map.Height; y++)
+                for (var y = 0; y < Map.Height; y++)
                 {
-                    for (int x = 0; x < map.Height; x++)
+                    for (var x = 0; x < Map.Height; x++)
                     {
-                        if (map.tiles[l][y * map.Width + x].tileset >= 0 && map.tiles[l][y * map.Width + x].id >= 0)
+                        if (Map.Tiles[l][y * Map.Width + x].Tileset >= 0 && Map.Tiles[l][y * Map.Width + x].Id >= 0)
                         {
-                            tempSprite = new Sprite(MapEditor.Instance.Tilesets[map.tiles[l][y * map.Width + x].tileset]);
-                            tempSprite.Position = new Vector2f(x * tempx, y * tempy);
-                            tempSprite.TextureRect = new IntRect(map.tiles[l][y * map.Width + x].id % (int)(tempSprite.Texture.Size.X / tempx) * tempx, 
-                                map.tiles[l][y * map.Width + x].id / (int)(tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy);
-                            mapViewer.Draw(tempSprite);
+                            _tempSprite = new Sprite(MapEditor.Instance.Tilesets[Map.Tiles[l][y*Map.Width + x].Tileset])
+                            {
+                                Position = new Vector2f(x*tempx, y*tempy)
+                            };
+                            _tempSprite.TextureRect = new IntRect(Map.Tiles[l][y * Map.Width + x].Id % (int)(_tempSprite.Texture.Size.X / tempx) * tempx, 
+                                Map.Tiles[l][y * Map.Width + x].Id / (int)(_tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy);
+                            mapViewer.Draw(_tempSprite);
                         }
                     }
                 }
             }
 
             if (MapEditor.Instance.DrawGridOnMaps)
-                foreach (Vertex[] v in lines)
+                foreach (Vertex[] v in _lines)
                     mapViewer.RenderSurface.Draw(v, PrimitiveType.Lines); // Because i forgot to include Draw Overloads.
 
             foreach (SelectedTileArea st in MapEditor.Instance.SelectingArea)
             {
-                int mouseY = (Mouse.GetPosition(mapViewer.RenderSurface).Y + offsetY) / tempy;
-                int mouseX = (Mouse.GetPosition(mapViewer.RenderSurface).X + offsetX) / tempx;
+                int mouseY = (Mouse.GetPosition(mapViewer.RenderSurface).Y + _offsetY) / tempy;
+                int mouseX = (Mouse.GetPosition(mapViewer.RenderSurface).X + _offsetX) / tempx;
 
-                tempSprite = new Sprite(MapEditor.Instance.Tilesets[st.tileset]);
-                tempSprite.Position = new Vector2f((mouseX + st.offsetX) * tempx, (mouseY + st.offsetY) * tempy);
+                _tempSprite = new Sprite(MapEditor.Instance.Tilesets[st.Tileset])
+                {
+                    Position = new Vector2f((mouseX + st.OffsetX)*tempx, (mouseY + st.OffsetY)*tempy)
+                };
 
-                tempSprite.TextureRect = new IntRect(st.id % (int)(tempSprite.Texture.Size.X / tempx) * tempx,
-                    st.id / (int)(tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy);
+                _tempSprite.TextureRect = new IntRect(st.Id % (int)(_tempSprite.Texture.Size.X / tempx) * tempx,
+                    st.Id / (int)(_tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy);
 
 
-                var c = tempSprite.Color;
-                tempSprite.Color = new Color(c.R, c.G, c.B, 128);
-                mapViewer.Draw(tempSprite);
+                var c = _tempSprite.Color;
+                _tempSprite.Color = new Color(c.R, c.G, c.B, 128);
+                mapViewer.Draw(_tempSprite);
             }
         }
 
         private void mapViewer_MouseDown(object sender, MouseEventArgs e)
         {
-            pressedDown = true;
-            placeTile(e.Location.X, e.Location.Y);
+            _pressedDown = true;
+            PlaceTile(e.Location.X, e.Location.Y);
         }
 
         private void mapViewer_MouseMove(object sender, MouseEventArgs e)
         {
-            if (pressedDown)
+            if (_pressedDown)
             {
-                placeTile(e.Location.X, e.Location.Y);
+                PlaceTile(e.Location.X, e.Location.Y);
             }
         }
 
         private void mapViewer_MouseUp(object sender, MouseEventArgs e)
         {
-            pressedDown = false;
-            lastDownTileX = -1;
-            lastDownTileY = -1;
+            _pressedDown = false;
+            _lastDownTileX = -1;
+            _lastDownTileY = -1;
 
-            UndoRedoStack.AddItem(new List<PlacedTile>(placedTile));
-            placedTile.Clear();
-            UndoPreventAddCache.Clear();
+            _undoRedoStack.AddItem(new List<PlacedTile>(_placedTile));
+            _placedTile.Clear();
+            _undoPreventAddCache.Clear();
         }
 
         private void mapViewer_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (ModifierKeys == Keys.ControlKey && e.KeyChar == (char)Keys.C)
             {
-                if (UndoRedoStack.CanUndo())
+                if (_undoRedoStack.CanUndo())
                 {
-                    UndoRedoStack.Undo();
+                    _undoRedoStack.Undo();
                 }
             }
         }
@@ -231,11 +235,11 @@ namespace EGMapEditor
             List<PlacedTile> forUndo = new List<PlacedTile>();
             foreach (PlacedTile p in lp)
             {
-                forUndo.Add(new PlacedTile(p.X, p.Y, p.Layer, map.tiles[p.Layer][p.Y + p.X].tileset, map.tiles[p.Layer][p.Y + p.X].id));
-                map.tiles[p.Layer][p.Y + p.X].tileset = p.Tileset;
-                map.tiles[p.Layer][p.Y + p.X].id = p.ID;
+                forUndo.Add(new PlacedTile(p.X, p.Y, p.Layer, Map.Tiles[p.Layer][p.Y + p.X].Tileset, Map.Tiles[p.Layer][p.Y + p.X].Id));
+                Map.Tiles[p.Layer][p.Y + p.X].Tileset = p.Tileset;
+                Map.Tiles[p.Layer][p.Y + p.X].Id = p.Id;
             }
-            UndoRedoStack.AddToUndo(forUndo);
+            _undoRedoStack.AddToUndo(forUndo);
         }
 
         private void UndoRedoStack_UndoHappened(object sender, UndoRedoEventArgs e)
@@ -244,12 +248,12 @@ namespace EGMapEditor
             List<PlacedTile> forRedo = new List<PlacedTile>();
             foreach (PlacedTile p in lp)
             {
-                forRedo.Add(new PlacedTile(p.X, p.Y, p.Layer, map.tiles[p.Layer][p.Y + p.X].tileset, map.tiles[p.Layer][p.Y + p.X].id));
-                map.tiles[p.Layer][p.Y + p.X].tileset = p.Tileset;
-                map.tiles[p.Layer][p.Y + p.X].id = p.ID;
+                forRedo.Add(new PlacedTile(p.X, p.Y, p.Layer, Map.Tiles[p.Layer][p.Y + p.X].Tileset, Map.Tiles[p.Layer][p.Y + p.X].Id));
+                Map.Tiles[p.Layer][p.Y + p.X].Tileset = p.Tileset;
+                Map.Tiles[p.Layer][p.Y + p.X].Id = p.Id;
             }
 
-            UndoRedoStack.AddToRedo(forRedo);
+            _undoRedoStack.AddToRedo(forRedo);
         }
 
 

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace EGMapEditor
 {
-    class AreaTool : Tools
+    class AreaTool : ITools
     {
         public ToolType ToolType { get; set; }
         public int Width { get; set; }
