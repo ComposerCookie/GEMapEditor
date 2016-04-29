@@ -28,30 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.trvExplorer = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // treeView1
+            // trvExplorer
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(220, 568);
-            this.treeView1.TabIndex = 0;
+            this.trvExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvExplorer.Location = new System.Drawing.Point(0, 0);
+            this.trvExplorer.Name = "trvExplorer";
+            this.trvExplorer.Size = new System.Drawing.Size(204, 529);
+            this.trvExplorer.TabIndex = 0;
             // 
             // ProjectExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.treeView1);
+            this.ClientSize = new System.Drawing.Size(204, 529);
+            this.Controls.Add(this.trvExplorer);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "ProjectExplorer";
-            this.Size = new System.Drawing.Size(220, 568);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView trvExplorer;
     }
 }
