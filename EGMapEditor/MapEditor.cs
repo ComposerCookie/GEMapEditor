@@ -84,6 +84,8 @@ namespace EGMapEditor
             SelectingArea = new List<SelectedTileArea>();
 
             LoadTilesets();
+
+            menuAddMap_Click(null, null);
         }
 
         public void OpenMap(Map m)

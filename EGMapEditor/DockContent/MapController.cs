@@ -157,11 +157,11 @@ namespace EGMapEditor
                     {
                         if (Map.Tiles[l][y * Map.Width + x].Tileset >= 0 && Map.Tiles[l][y * Map.Width + x].Id >= 0)
                         {
-                            _tempSprite = new Sprite(MapEditor.Instance.Tilesets[Map.Tiles[l][y*Map.Width + x].Tileset])
+                            _tempSprite = new Sprite(MapEditor.Instance.Tilesets[Map.Tiles[l][y * Map.Width + x].Tileset])
                             {
-                                Position = new Vector2f(x*tempx, y*tempy)
+                                Position = new Vector2f(x * tempx, y * tempy)
                             };
-                            _tempSprite.TextureRect = new IntRect(Map.Tiles[l][y * Map.Width + x].Id % (int)(_tempSprite.Texture.Size.X / tempx) * tempx, 
+                            _tempSprite.TextureRect = new IntRect(Map.Tiles[l][y * Map.Width + x].Id % (int)(_tempSprite.Texture.Size.X / tempx) * tempx,
                                 Map.Tiles[l][y * Map.Width + x].Id / (int)(_tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy);
                             mapViewer.Draw(_tempSprite);
                         }
@@ -173,24 +173,25 @@ namespace EGMapEditor
                 foreach (Vertex[] v in _lines)
                     mapViewer.RenderSurface.Draw(v, PrimitiveType.Lines); // Because i forgot to include Draw Overloads.
 
-            foreach (SelectedTileArea st in MapEditor.Instance.SelectingArea)
-            {
-                int mouseY = (Mouse.GetPosition(mapViewer.RenderSurface).Y + _offsetY) / tempy;
-                int mouseX = (Mouse.GetPosition(mapViewer.RenderSurface).X + _offsetX) / tempx;
-
-                _tempSprite = new Sprite(MapEditor.Instance.Tilesets[st.Tileset])
+            if (MapEditor.Instance.CurrentFocusedMap == this)
+                foreach (SelectedTileArea st in MapEditor.Instance.SelectingArea)
                 {
-                    Position = new Vector2f((mouseX + st.OffsetX)*tempx, (mouseY + st.OffsetY)*tempy)
-                };
+                    int mouseY = (Mouse.GetPosition(mapViewer.RenderSurface).Y + _offsetY) / tempy;
+                    int mouseX = (Mouse.GetPosition(mapViewer.RenderSurface).X + _offsetX) / tempx;
 
-                _tempSprite.TextureRect = new IntRect(st.Id % (int)(_tempSprite.Texture.Size.X / tempx) * tempx,
-                    st.Id / (int)(_tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy);
+                    _tempSprite = new Sprite(MapEditor.Instance.Tilesets[st.Tileset])
+                    {
+                        Position = new Vector2f((mouseX + st.OffsetX) * tempx, (mouseY + st.OffsetY) * tempy)
+                    };
+
+                    _tempSprite.TextureRect = new IntRect(st.Id % (int)(_tempSprite.Texture.Size.X / tempx) * tempx,
+                        st.Id / (int)(_tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy);
 
 
-                var c = _tempSprite.Color;
-                _tempSprite.Color = new Color(c.R, c.G, c.B, 128);
-                mapViewer.Draw(_tempSprite);
-            }
+                    var c = _tempSprite.Color;
+                    _tempSprite.Color = new Color(c.R, c.G, c.B, 128);
+                    mapViewer.Draw(_tempSprite);
+                }
         }
 
         private void mapViewer_MouseDown(object sender, MouseEventArgs e)
