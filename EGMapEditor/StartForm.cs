@@ -11,6 +11,7 @@ namespace EGMapEditor
         public StartForm()
         {
             InitializeComponent();
+            rdbtnOffline.Checked = true;
         }
 
         private void rdbtnOnline_CheckedChanged(object sender, EventArgs e)
