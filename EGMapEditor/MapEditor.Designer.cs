@@ -45,14 +45,8 @@
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.explorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tilesetControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dockPrimary = new System.Windows.Forms.DockPanel.DockPanel();
-            this.dockSecondary = new System.Windows.Forms.DockPanel.DockPanel();
+            this.dockPanel = new System.Windows.Forms.DockPanel.DockPanel();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -185,52 +179,21 @@
             this.tilesetControllerToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.tilesetControllerToolStripMenuItem.Text = "Tileset Controller";
             // 
-            // splitContainer1
+            // dockPanel
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.dockPrimary);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.dockSecondary);
-            this.splitContainer1.Size = new System.Drawing.Size(1545, 789);
-            this.splitContainer1.SplitterDistance = 1121;
-            this.splitContainer1.SplitterWidth = 5;
-            this.splitContainer1.TabIndex = 13;
-            // 
-            // dockPrimary
-            // 
-            this.dockPrimary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dockPrimary.DockBackColor = System.Drawing.SystemColors.Control;
-            this.dockPrimary.DocumentStyle = System.Windows.Forms.DockPanel.DocumentStyle.DockingWindow;
-            this.dockPrimary.Location = new System.Drawing.Point(0, 0);
-            this.dockPrimary.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dockPrimary.Name = "dockPrimary";
-            this.dockPrimary.Size = new System.Drawing.Size(1121, 789);
-            this.dockPrimary.TabIndex = 0;
-            // 
-            // dockSecondary
-            // 
-            this.dockSecondary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dockSecondary.DocumentStyle = System.Windows.Forms.DockPanel.DocumentStyle.DockingWindow;
-            this.dockSecondary.Location = new System.Drawing.Point(0, 0);
-            this.dockSecondary.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dockSecondary.Name = "dockSecondary";
-            this.dockSecondary.Size = new System.Drawing.Size(419, 789);
-            this.dockSecondary.TabIndex = 2;
+            this.dockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockPanel.Location = new System.Drawing.Point(0, 28);
+            this.dockPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dockPanel.Name = "dockPanel";
+            this.dockPanel.Size = new System.Drawing.Size(1545, 789);
+            this.dockPanel.TabIndex = 15;
             // 
             // MapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1545, 817);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.dockPanel);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -243,10 +206,6 @@
             this.Resize += new System.EventHandler(this.MapEditor_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,10 +228,8 @@
         private System.Windows.Forms.ToolStripMenuItem menuAddMap;
         private System.Windows.Forms.ToolStripMenuItem menuAddTileset;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DockPanel.DockPanel dockPrimary;
-        private System.Windows.Forms.DockPanel.DockPanel dockSecondary;
         private System.Windows.Forms.ToolStripMenuItem menuUndoMap;
         private System.Windows.Forms.ToolStripMenuItem menuRedoMap;
+        private System.Windows.Forms.DockPanel.DockPanel dockPanel;
     }
 }

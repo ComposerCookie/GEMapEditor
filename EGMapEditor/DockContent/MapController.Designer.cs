@@ -37,9 +37,9 @@
             // 
             this.vScrTileset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.vScrTileset.Location = new System.Drawing.Point(659, 0);
+            this.vScrTileset.Location = new System.Drawing.Point(277, 0);
             this.vScrTileset.Name = "vScrTileset";
-            this.vScrTileset.Size = new System.Drawing.Size(22, 516);
+            this.vScrTileset.Size = new System.Drawing.Size(22, 213);
             this.vScrTileset.TabIndex = 4;
             this.vScrTileset.Scroll += new System.Windows.Forms.ScrollEventHandler(this.MoveCamera);
             // 
@@ -47,9 +47,9 @@
             // 
             this.hScrTileset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.hScrTileset.Location = new System.Drawing.Point(0, 516);
+            this.hScrTileset.Location = new System.Drawing.Point(0, 209);
             this.hScrTileset.Name = "hScrTileset";
-            this.hScrTileset.Size = new System.Drawing.Size(659, 22);
+            this.hScrTileset.Size = new System.Drawing.Size(278, 22);
             this.hScrTileset.TabIndex = 3;
             this.hScrTileset.Scroll += new System.Windows.Forms.ScrollEventHandler(this.MoveCamera);
             // 
@@ -61,9 +61,9 @@
             this.mapViewer.AutoDraw = true;
             this.mapViewer.ClearColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(227)))));
             this.mapViewer.Location = new System.Drawing.Point(0, 0);
-            this.mapViewer.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.mapViewer.Margin = new System.Windows.Forms.Padding(5);
             this.mapViewer.Name = "mapViewer";
-            this.mapViewer.Size = new System.Drawing.Size(659, 516);
+            this.mapViewer.Size = new System.Drawing.Size(278, 210);
             this.mapViewer.TabIndex = 5;
             this.mapViewer.Text = null;
             this.mapViewer.View = null;
@@ -79,13 +79,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(679, 534);
+            this.ClientSize = new System.Drawing.Size(298, 231);
             this.Controls.Add(this.mapViewer);
             this.Controls.Add(this.vScrTileset);
             this.Controls.Add(this.hScrTileset);
+            this.DockAreas = ((System.Windows.Forms.DockPanel.DockAreas)((System.Windows.Forms.DockPanel.DockAreas.Float | System.Windows.Forms.DockPanel.DockAreas.Document)));
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "MapController";
+            this.ShowIcon = false;
+            this.Text = "New Map";
             this.Enter += new System.EventHandler(this.MapController_Enter);
             this.Resize += new System.EventHandler(this.MapController_Resize);
             this.ResumeLayout(false);

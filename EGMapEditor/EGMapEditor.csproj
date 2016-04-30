@@ -62,17 +62,17 @@
     <Compile Include="MapEditor.Designer.cs">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapLayersViewer.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="DockContent\MapLayersViewer.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MapLayersViewer.Designer.cs">
+    <Compile Include="DockContent\MapLayersViewer.Designer.cs">
       <DependentUpon>MapLayersViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="PointTool.cs" />
-    <Compile Include="ProjectExplorer.cs">
+    <Compile Include="DockContent\ProjectExplorer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjectExplorer.Designer.cs">
+    <Compile Include="DockContent\ProjectExplorer.Designer.cs">
       <DependentUpon>ProjectExplorer.cs</DependentUpon>
     </Compile>
     <Compile Include="MapPropertiesViewer.cs">
@@ -118,10 +118,10 @@
     <EmbeddedResource Include="MapEditor.resx">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MapLayersViewer.resx">
+    <EmbeddedResource Include="DockContent\MapLayersViewer.resx">
       <DependentUpon>MapLayersViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectExplorer.resx">
+    <EmbeddedResource Include="DockContent\ProjectExplorer.resx">
       <DependentUpon>ProjectExplorer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MapPropertiesViewer.resx">
