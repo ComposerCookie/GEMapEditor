@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Windows.Forms.DockPanel;
 
 using SFML.Graphics;
 using SFML.Window;
@@ -36,6 +35,9 @@ namespace EGMapEditor
         public MapController(Map m)
         {
             InitializeComponent();
+
+            m.Tag = this;
+
             vScrTileset.Maximum = m.Height * MapEditor.Instance.TILE_HEIGHT;
             hScrTileset.Maximum = m.Width * MapEditor.Instance.TILE_WIDTH;
 
@@ -271,6 +273,11 @@ namespace EGMapEditor
         private void MapController_Enter(object sender, EventArgs e)
         {
             MapEditor.Instance.CurrentFocusedMap = this;
+        }
+
+        private void MapController_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MapEditor.Instance.CloseMapController(this);
         }
     }
 }

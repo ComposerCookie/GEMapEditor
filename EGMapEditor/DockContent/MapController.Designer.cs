@@ -76,19 +76,20 @@
             // 
             // MapController
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(298, 231);
             this.Controls.Add(this.mapViewer);
             this.Controls.Add(this.vScrTileset);
             this.Controls.Add(this.hScrTileset);
-            this.DockAreas = ((System.Windows.Forms.DockPanel.DockAreas)((System.Windows.Forms.DockPanel.DockAreas.Float | System.Windows.Forms.DockPanel.DockAreas.Document)));
+            this.DockAreas = ((System.Windows.Forms.DockAreas)((System.Windows.Forms.DockAreas.Float | System.Windows.Forms.DockAreas.Document)));
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Name = "MapController";
             this.ShowIcon = false;
             this.Text = "New Map";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MapController_FormClosing);
             this.Enter += new System.EventHandler(this.MapController_Enter);
             this.Resize += new System.EventHandler(this.MapController_Resize);
             this.ResumeLayout(false);

@@ -2,7 +2,6 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Windows.Forms.DockPanel;
 using SFML.Graphics;
 
 namespace EGMapEditor
@@ -33,6 +32,7 @@ namespace EGMapEditor
 
         private readonly TilesetController _tilesetController;
         private readonly MapLayersViewer _mapLayerViewer;
+        private readonly ProjectExplorer _projectExplorer;
 
         private string TilesetPath() { return "/Tileset/"; }
         public List<Texture> Tilesets { get; set; }
@@ -72,9 +72,9 @@ namespace EGMapEditor
             _tilesetController = new TilesetController { Name = "_tilesetController" };
             _tilesetController.Show(dockPanel, DockState.DockRight);
 
-            var projectExplorer = new ProjectExplorer { Name = "projectExplorer" };
-            projectExplorer.Show(dockPanel, DockState.DockRight);
-            projectExplorer.DockTo(_tilesetController.Pane, DockStyle.Top, 1);
+            _projectExplorer = new ProjectExplorer { Name = "projectExplorer" };
+            _projectExplorer.Show(dockPanel, DockState.DockRight);
+            _projectExplorer.DockTo(_tilesetController.Pane, DockStyle.Top, 1);
 
             _mapLayerViewer = new MapLayersViewer { Name = "mapLayersViewer" };
             _mapLayerViewer.Show(dockPanel, DockState.DockRightAutoHide);
@@ -92,6 +92,12 @@ namespace EGMapEditor
         {
             MapController mc = new MapController(m);
             mc.Show(dockPanel, DockState.Document);
+            _projectExplorer.OpenSessionMap(mc);
+        }
+
+        public void CloseMapController(MapController mc)
+        {
+            _projectExplorer.CloseSessionMap(mc);
         }
 
         private void MapEditor_Shown(object sender, EventArgs e)
@@ -154,6 +160,7 @@ namespace EGMapEditor
         {
             SessionMaps.Add(new Map());
             OpenMap(SessionMaps[SessionMaps.Count - 1]);
+            
             _mapLayerViewer.ChangeMapData(SessionMaps[SessionMaps.Count - 1]);
         }
 

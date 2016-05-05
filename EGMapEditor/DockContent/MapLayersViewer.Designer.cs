@@ -124,10 +124,10 @@
             this.Controls.Add(this.btnEditLayer);
             this.Controls.Add(this.btnAddLayer);
             this.Controls.Add(this.trvLayers);
-            this.DockAreas = ((System.Windows.Forms.DockPanel.DockAreas)(((((System.Windows.Forms.DockPanel.DockAreas.Float | System.Windows.Forms.DockPanel.DockAreas.DockLeft) 
-            | System.Windows.Forms.DockPanel.DockAreas.DockRight) 
-            | System.Windows.Forms.DockPanel.DockAreas.DockTop) 
-            | System.Windows.Forms.DockPanel.DockAreas.DockBottom)));
+            this.DockAreas = ((System.Windows.Forms.DockAreas)(((((System.Windows.Forms.DockAreas.Float | System.Windows.Forms.DockAreas.DockLeft) 
+            | System.Windows.Forms.DockAreas.DockRight) 
+            | System.Windows.Forms.DockAreas.DockTop) 
+            | System.Windows.Forms.DockAreas.DockBottom)));
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "MapLayersViewer";
             this.ShowIcon = false;

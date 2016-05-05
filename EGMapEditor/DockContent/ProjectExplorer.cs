@@ -1,50 +1,80 @@
-﻿using System.Windows.Forms.DockPanel;
+﻿using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace EGMapEditor
 {
     public partial class ProjectExplorer : DockContent
     {
-        private readonly List<TreeNode> _networkMaps;
-        private readonly List<TreeNode> _localMaps;
-        private readonly List<TreeNode> _sessionMaps;
+        private readonly TreeNode _networkMaps;
+        private readonly TreeNode _localMaps;
+        private readonly TreeNode _sessionMaps;
 
 
         public ProjectExplorer()
         {
             InitializeComponent();
-            _networkMaps = new List<TreeNode>();
-            _localMaps = new List<TreeNode>();
-            _sessionMaps = new List<TreeNode>();
+            _networkMaps = new TreeNode("Network Maps: ");
+            _localMaps = new TreeNode("Local Maps: ");
+            _sessionMaps = new TreeNode("Session Maps: ");
+
+            LoadExplorer();
         }
 
         public void LoadExplorer()
         {
             trvExplorer.Nodes.Clear();
-            trvExplorer.Nodes.Add("Network Maps: ");
+            trvExplorer.Nodes.Add(_networkMaps);
             LoadNetworkMaps();
-            trvExplorer.Nodes.Add("Local Maps: ");
+            trvExplorer.Nodes.Add(_localMaps);
             LoadLocalMaps();
-            trvExplorer.Nodes.Add("Session Maps: ");
+            trvExplorer.Nodes.Add(_sessionMaps);
             LoadSessionMaps();
         }
 
         public void LoadNetworkMaps()
         {
-            _networkMaps.Clear();
-
-            trvExplorer.Nodes[0].Nodes.AddRange(_networkMaps.ToArray());
+            _networkMaps.Nodes.Clear();
         }
 
         public void LoadLocalMaps()
         {
-            _localMaps.Clear();
+            _localMaps.Nodes.Clear();
         }
 
         public void LoadSessionMaps()
         {
-            _sessionMaps.Clear();
+            _sessionMaps.Nodes.Clear();
+            foreach (Map m in MapEditor.Instance.SessionMaps)
+            {
+                if (m.Tag != null)
+                    OpenSessionMap(m.Tag);
+            }
+        }
+
+        public void OpenSessionMap(MapController mc)
+        {
+            _sessionMaps.Nodes.Add(new TreeNode() { Text = mc.Map.Name, Tag = mc});
+        }
+
+        public void CloseSessionMap(MapController mc)
+        {
+            for (int i = _sessionMaps.Nodes.Count - 1; i > -1; i--)
+            {
+                if (_sessionMaps.Nodes[i].Tag == mc)
+                    _sessionMaps.Nodes[i].Remove();
+            }
+        }
+
+        private void trvExplorer_DoubleClick(object sender, System.EventArgs e)
+        {
+            if (trvExplorer.SelectedNode.Parent == _sessionMaps)
+            {
+                if (trvExplorer.SelectedNode.Tag != null)
+                {
+                    MapController mc = (MapController)trvExplorer.SelectedNode.Tag;
+                    mc.Focus();
+                }
+            }
         }
     }
 }

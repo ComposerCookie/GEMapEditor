@@ -34,11 +34,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DockPanel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ArchaicSoft.DockPanel.1.0.0\lib\DockPanel.dll</HintPath>
+      <HintPath>..\packages\ArchaicSoft.DockPanel.1.2.2\lib\DockPanel.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SFML.Net, Version=2.2.0.0, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\packages\SFML.Net.Portable.1.2.1\lib\SFML.Net.dll</HintPath>
+    <Reference Include="SFML.Net, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SFML.Net.Portable.1.2.3\lib\SFML.Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

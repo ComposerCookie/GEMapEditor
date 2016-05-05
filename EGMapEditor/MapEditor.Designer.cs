@@ -45,7 +45,7 @@
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.explorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tilesetControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dockPanel = new System.Windows.Forms.DockPanel.DockPanel();
+            this.dockPanel = new System.Windows.Forms.DockPanel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -229,6 +229,6 @@
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuUndoMap;
         private System.Windows.Forms.ToolStripMenuItem menuRedoMap;
-        private System.Windows.Forms.DockPanel.DockPanel dockPanel;
+        private System.Windows.Forms.DockPanel dockPanel;
     }
 }

@@ -21,9 +21,12 @@ namespace EGMapEditor
         public int Height => 40;
         public List<Tile[]> Tiles { get; set; }
         public List<string> LayerNames { get; set; }
+        public MapController Tag { get; set; }
 
         public Map()
         {
+            Name = "New Map";
+
             Tiles = new List<Tile[]>();
             LayerNames = new List<string>();
             AddLayer();

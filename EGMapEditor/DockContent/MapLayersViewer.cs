@@ -2,7 +2,6 @@
 
 using System.Linq;
 using System.Windows.Forms;
-using System.Windows.Forms.DockPanel;
 
 namespace EGMapEditor
 {
