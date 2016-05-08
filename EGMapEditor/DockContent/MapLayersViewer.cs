@@ -62,9 +62,10 @@ namespace EGMapEditor
             {
                 ViewingMap.LayerShiftUp(ViewingMap.Layers.Count - trvLayers.SelectedNode.Index - 1);
 
-                TreeNode temp2 = trvLayers.SelectedNode;
-                trvLayers.Nodes[trvLayers.SelectedNode.Index] = trvLayers.Nodes[trvLayers.SelectedNode.Index - 1];
-                trvLayers.Nodes[trvLayers.SelectedNode.Index - 1] = temp2;
+                int index = trvLayers.SelectedNode.Index;
+                TreeNode temp3 = trvLayers.SelectedNode;
+                trvLayers.Nodes.Remove(trvLayers.SelectedNode);
+                trvLayers.Nodes.Insert(index - 1, temp3);
 
             }
         }
@@ -75,9 +76,11 @@ namespace EGMapEditor
             {
                 ViewingMap.LayerShiftDown(ViewingMap.Layers.Count - trvLayers.SelectedNode.Index - 1);
 
+                int index = trvLayers.SelectedNode.Index;
                 TreeNode temp3 = trvLayers.SelectedNode;
-                trvLayers.Nodes[trvLayers.SelectedNode.Index] = trvLayers.Nodes[trvLayers.SelectedNode.Index + 1];
-                trvLayers.Nodes[trvLayers.SelectedNode.Index + 1] = temp3;
+                trvLayers.Nodes.Remove(trvLayers.SelectedNode);
+                trvLayers.Nodes.Insert(index + 1, temp3);
+                
             }
         }
 
