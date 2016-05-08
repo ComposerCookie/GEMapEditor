@@ -32,6 +32,8 @@ namespace EGMapEditor
         private readonly List<PlacedTile> _placedTile;
         private readonly List<int> _undoPreventAddCache;
 
+        private List<int[,]> tileCache;
+
         public MapController(Map m)
         {
             InitializeComponent();
@@ -51,6 +53,14 @@ namespace EGMapEditor
 
             Map = m;
 
+            tileCache = new List<int[,]>();
+            foreach (MapLayer ml in Map.Layers)
+            {
+                tileCache.Add(new int[Map.Width, Map.Height]);
+                CacheToDefault();
+                FillCache();
+            }
+
             _lastDownTileX = -1;
             _lastDownTileY = -1;
 
@@ -66,6 +76,75 @@ namespace EGMapEditor
 
             _undoRedoStack.UndoHappened += UndoRedoStack_UndoHappened;
             _undoRedoStack.RedoHappened += UndoRedoStack_RedoHappened;
+        }
+
+        public void CacheLayerShiftUp(int index)
+        {
+            if (index >= tileCache.Count - 1)
+                return;
+
+            int[,] temp = tileCache[index];
+            tileCache[index] = tileCache[index + 1];
+            tileCache[index + 1] = temp;
+        }
+
+        public void CacheLayerShiftDown(int index)
+        {
+            if (index < 1)
+                return;
+
+            int[,] temp = tileCache[index];
+            tileCache[index] = tileCache[index - 1];
+            tileCache[index - 1] = temp;
+        }
+
+        public void CacheRemoveLayer(int index)
+        {
+            tileCache.RemoveAt(index);
+        }
+
+        public void CacheAddLayer()
+        {
+            tileCache.Add(new int[Map.Width, Map.Height]);
+            CacheLayerToDefault(tileCache.Count - 1);
+        }
+
+        public void ReCreateCache()
+        {
+            for (int i = 0; i < tileCache.Count; i++)
+            {
+                tileCache[i] = new int[Map.Width, Map.Height];
+                CacheToDefault();
+                FillCache();
+            }
+        }
+
+        public void CacheToDefault()
+        {
+            for (int i = 0; i < tileCache.Count; i++)
+                CacheLayerToDefault(i);
+        }
+
+        public void CacheLayerToDefault(int l)
+        {
+            for (int x = 0; x < Map.Width; x++)
+                for (int y = 0; y < Map.Height; y++)
+                    tileCache[l][x, y] = -1;
+        }
+
+        public void FillCache()
+        {
+            for (int i = 0; i < tileCache.Count; i++)
+                if (i < Map.Layers.Count)
+                    foreach (Tile t in Map.Layers[i].Tiles)
+                        if (t.X < Map.Width && t.Y < Map.Height)
+                            tileCache[i][t.X, t.Y] = Map.Layers[i].Tiles.IndexOf(t);
+        }
+
+        public void RefreshCache()
+        {
+            CacheToDefault();
+            FillCache();
         }
 
         #region SFML Control
@@ -106,7 +185,7 @@ namespace EGMapEditor
             int tempx = MapEditor.Instance.TILE_WIDTH;
             int tempy = MapEditor.Instance.TILE_HEIGHT;
 
-            int clickedY = (mouseY + _offsetY) / tempy * Map.Width;
+            int clickedY = (mouseY + _offsetY) / tempy;
             int clickedX = (mouseX + _offsetX) / tempx;
 
             if (clickedX == _lastDownTileX && clickedY == _lastDownTileY)
@@ -117,16 +196,28 @@ namespace EGMapEditor
 
             foreach (SelectedTileArea st in MapEditor.Instance.SelectingArea)
             {
-                if (clickedY + clickedX + st.OffsetY * Map.Width + st.OffsetX < Map.Tiles[CurrentEditLayer].Length)
+                int rightX = clickedX + st.OffsetX;
+                int rightY = clickedY + st.OffsetY;
+                int actualLoc = clickedY * Map.Width + st.OffsetY * Map.Width + rightX;
+
+                if (rightX < Map.Width && rightY < Map.Height)
                 {
-                    int actualLoc = clickedY + st.OffsetY * Map.Width + clickedX + st.OffsetX;
+                    if (tileCache[CurrentEditLayer][rightX, rightY] == -1)
+                    {
+                        tileCache[CurrentEditLayer][rightX, rightY] = Map.Layers[CurrentEditLayer].Tiles.Count;
+                        Map.Layers[CurrentEditLayer].Tiles.Add(new Tile(-1, -1, rightX, rightY));
+                    }
+
                     if (!_undoPreventAddCache.Contains(actualLoc))
                     {
-                        _placedTile.Add(new PlacedTile(clickedX + st.OffsetX, clickedY + st.OffsetY * Map.Width, CurrentEditLayer, Map.Tiles[CurrentEditLayer][actualLoc].Tileset, Map.Tiles[CurrentEditLayer][actualLoc].Id));
+                        _placedTile.Add(new PlacedTile(rightX, rightY, CurrentEditLayer,
+                            Map.Layers[CurrentEditLayer].Tiles[tileCache[CurrentEditLayer][rightX, rightY]].Tileset,
+                            Map.Layers[CurrentEditLayer].Tiles[tileCache[CurrentEditLayer][rightX, rightY]].Id));
                         _undoPreventAddCache.Add(actualLoc);
                     }
-                    Map.Tiles[CurrentEditLayer][actualLoc].Id = st.Id;
-                    Map.Tiles[CurrentEditLayer][actualLoc].Tileset = st.Tileset;
+
+                    Map.Layers[CurrentEditLayer].Tiles[tileCache[CurrentEditLayer][rightX, rightY]].Id = st.Id;
+                    Map.Layers[CurrentEditLayer].Tiles[tileCache[CurrentEditLayer][rightX, rightY]].Tileset = st.Tileset;
                 }
             }
 
@@ -151,24 +242,18 @@ namespace EGMapEditor
             int tempx = MapEditor.Instance.TILE_WIDTH;
             int tempy = MapEditor.Instance.TILE_HEIGHT;
 
-            for (var l = 0; l < Map.Tiles.Count; l++)
+            for (var l = 0; l < Map.Layers.Count; l++)
             {
-                for (var y = 0; y < Map.Height; y++)
-                {
-                    for (var x = 0; x < Map.Height; x++)
+                foreach (Tile t in Map.Layers[l].Tiles)
+                    if (t.Id >= 0 && t.Tileset >= 0)
                     {
-                        if (Map.Tiles[l][y * Map.Width + x].Tileset >= 0 && Map.Tiles[l][y * Map.Width + x].Id >= 0)
+                        _tempSprite = new Sprite(MapEditor.Instance.Tilesets[t.Tileset])
                         {
-                            _tempSprite = new Sprite(MapEditor.Instance.Tilesets[Map.Tiles[l][y * Map.Width + x].Tileset])
-                            {
-                                Position = new Vector2f(x * tempx, y * tempy)
-                            };
-                            _tempSprite.TextureRect = new IntRect(Map.Tiles[l][y * Map.Width + x].Id % (int)(_tempSprite.Texture.Size.X / tempx) * tempx,
-                                Map.Tiles[l][y * Map.Width + x].Id / (int)(_tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy);
-                            mapViewer.Draw(_tempSprite);
-                        }
+                            Position = new Vector2f(t.X * tempx, t.Y * tempy),
+                            TextureRect = new IntRect(t.Id % (int)(_tempSprite.Texture.Size.X / tempx) * tempx, t.Id / (int)(_tempSprite.Texture.Size.X / tempx) * tempy, tempx, tempy)
+                        };
+                        mapViewer.Draw(_tempSprite);
                     }
-                }
             }
 
             if (MapEditor.Instance.DrawGridOnMaps)
@@ -238,9 +323,12 @@ namespace EGMapEditor
             List<PlacedTile> forUndo = new List<PlacedTile>();
             foreach (PlacedTile p in lp)
             {
-                forUndo.Add(new PlacedTile(p.X, p.Y, p.Layer, Map.Tiles[p.Layer][p.Y + p.X].Tileset, Map.Tiles[p.Layer][p.Y + p.X].Id));
-                Map.Tiles[p.Layer][p.Y + p.X].Tileset = p.Tileset;
-                Map.Tiles[p.Layer][p.Y + p.X].Id = p.Id;
+                if (tileCache[p.Layer][p.X, p.Y] >= 0)
+                {
+                    forUndo.Add(new PlacedTile(p.X, p.Y, p.Layer, Map.Layers[p.Layer].Tiles[tileCache[p.Layer][p.X, p.Y]].Tileset, Map.Layers[p.Layer].Tiles[tileCache[p.Layer][p.X, p.Y]].Id));
+                    Map.Layers[p.Layer].Tiles[tileCache[p.Layer][p.X, p.Y]].Tileset = p.Tileset;
+                    Map.Layers[p.Layer].Tiles[tileCache[p.Layer][p.X, p.Y]].Id = p.Id;
+                }
             }
             _undoRedoStack.AddToUndo(forUndo);
         }
@@ -251,9 +339,13 @@ namespace EGMapEditor
             List<PlacedTile> forRedo = new List<PlacedTile>();
             foreach (PlacedTile p in lp)
             {
-                forRedo.Add(new PlacedTile(p.X, p.Y, p.Layer, Map.Tiles[p.Layer][p.Y + p.X].Tileset, Map.Tiles[p.Layer][p.Y + p.X].Id));
-                Map.Tiles[p.Layer][p.Y + p.X].Tileset = p.Tileset;
-                Map.Tiles[p.Layer][p.Y + p.X].Id = p.Id;
+                if (tileCache[p.Layer][p.X, p.Y] >= 0)
+                {
+                    forRedo.Add(new PlacedTile(p.X, p.Y, p.Layer, Map.Layers[p.Layer].Tiles[tileCache[p.Layer][p.X, p.Y]].Tileset, Map.Layers[p.Layer].Tiles[tileCache[p.Layer][p.X, p.Y]].Id));
+                    Map.Layers[p.Layer].Tiles[tileCache[p.Layer][p.X, p.Y]].Tileset = p.Tileset;
+                    Map.Layers[p.Layer].Tiles[tileCache[p.Layer][p.X, p.Y]].Id = p.Id;
+                }                    
+                
             }
 
             _undoRedoStack.AddToRedo(forRedo);

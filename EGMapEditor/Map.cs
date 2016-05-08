@@ -2,56 +2,94 @@
 
 namespace EGMapEditor
 {
-    public struct Tile
+    public class Tile
     {
-        public int Id;
-        public int Tileset;
+        public int Id { get; set; }
+        public int Tileset { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
-        public Tile(int id, int ts)
+        public Tile(int id, int ts, int x, int y)
         {
             Id = id;
             Tileset = ts;
+            X = x;
+            Y = y;
         }
     }
 
     public class Map
     {
         public string Name { get; set; }
-        public int Width => 80;
-        public int Height => 40;
-        public List<Tile[]> Tiles { get; set; }
-        public List<string> LayerNames { get; set; }
+        public string FileName { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public List<MapLayer> Layers { get; set; }
         public MapController Tag { get; set; }
 
         public Map()
         {
             Name = "New Map";
+            Width = 60;
+            Height = 40;
 
-            Tiles = new List<Tile[]>();
-            LayerNames = new List<string>();
+            Layers = new List<MapLayer>();
+            AddLayer();
+        }
+
+        public Map(string name, int width, int height)
+        {
+            Name = name;
+            Width = width;
+            Height = height;
+
+            Layers = new List<MapLayer>();
             AddLayer();
         }
 
         public void AddLayer()
         {
-            Tiles.Add(new Tile[Width * Height]);
-            for (var i = 0; i < Width * Height - 1; i++ )
-            {
-                Tiles[Tiles.Count - 1][i].Id = -1;
-            }
-            LayerNames.Add("Unnamed Layer");
+            AddLayer("Layer " + (Layers.Count + 1));
         }
 
         public void AddLayer(string name)
         {
-            AddLayer();
-            LayerNames[LayerNames.Count - 1] = name;
+            Layers.Add(new MapLayer(name));
+            if (Tag != null)
+                Tag.CacheAddLayer();
         }
 
         public void RemoveLayer(int index)
         {
-            Tiles.RemoveAt(index);
-            LayerNames.RemoveAt(index);
+            Layers.RemoveAt(index);
+            if (Tag != null)
+                Tag.CacheRemoveLayer(index);
         }
-}
+
+        public void LayerShiftUp(int index)
+        {
+            if (index >= Layers.Count - 1)
+                return;
+
+            MapLayer temp = Layers[index];
+            Layers[index] = Layers[index + 1];
+            Layers[index + 1] = temp;
+
+            if (Tag != null)
+                Tag.CacheLayerShiftUp(index);
+        }
+
+        public void LayerShiftDown(int index)
+        {
+            if (index < 1)
+                return;
+
+            MapLayer temp = Layers[index];
+            Layers[index] = Layers[index - 1];
+            Layers[index - 1] = temp;
+
+            if (Tag != null)
+                Tag.CacheLayerShiftDown(index);
+        }
+    }
 }

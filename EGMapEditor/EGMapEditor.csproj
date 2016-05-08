@@ -68,6 +68,7 @@
     <Compile Include="DockContent\MapLayersViewer.Designer.cs">
       <DependentUpon>MapLayersViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="MapLayer.cs" />
     <Compile Include="PointTool.cs" />
     <Compile Include="DockContent\ProjectExplorer.cs">
       <SubType>Form</SubType>
