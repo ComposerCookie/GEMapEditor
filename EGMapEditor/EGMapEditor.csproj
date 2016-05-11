@@ -48,8 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AreaTool.cs" />
-    <Compile Include="Map.cs" />
+    <Compile Include="CustomProperty.cs" />
+    <Compile Include="Propertiable.cs" />
+    <Compile Include="Tool\AreaTool.cs" />
+    <Compile Include="Map\Map.cs" />
     <Compile Include="DockContent\MapController.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,8 +70,8 @@
     <Compile Include="DockContent\MapLayersViewer.Designer.cs">
       <DependentUpon>MapLayersViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapLayer.cs" />
-    <Compile Include="PointTool.cs" />
+    <Compile Include="Map\MapLayer.cs" />
+    <Compile Include="Tool\PointTool.cs" />
     <Compile Include="DockContent\ProjectExplorer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,7 +84,7 @@
     <Compile Include="MapPropertiesViewer.Designer.cs">
       <DependentUpon>MapPropertiesViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="ISizableTool.cs" />
+    <Compile Include="Tool\ISizableTool.cs" />
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,8 +111,8 @@
     <Compile Include="ToolPropertiesViewer.Designer.cs">
       <DependentUpon>ToolPropertiesViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="ITools.cs" />
-    <Compile Include="ToolType.cs" />
+    <Compile Include="Tool\ITools.cs" />
+    <Compile Include="Tool\ToolType.cs" />
     <Compile Include="UndoRedo.cs" />
     <Compile Include="UndoRedoEventArgs.cs" />
     <EmbeddedResource Include="DockContent\MapController.resx">
